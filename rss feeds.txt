@@ -1,0 +1,191 @@
+RSS Feeds
+
+---BBC:
+
+channel tags: title, description, link, image, generator,
+              lastBuildDate, copyright, langauge, ttl
+item tags:    title, description, link, guid, pubDate, media
+
+Front Page: http://feeds.bbci.co.uk/news/rss.xml?edition=uk
+World: http://feeds.bbci.co.uk/news/world/rss.xml?edition=uk
+UK: http://feeds.bbci.co.uk/news/uk/rss.xml?edition=uk
+England: http://feeds.bbci.co.uk/news/england/rss.xml?edition=uk
+Northern Ireland: http://feeds.bbci.co.uk/news/northern_ireland/rss.xml?edition=uk
+Scotland: http://feeds.bbci.co.uk/news/scotland/rss.xml?edition=uk
+Wales: http://feeds.bbci.co.uk/news/wales/rss.xml?edition=uk
+Business: http://feeds.bbci.co.uk/news/business/rss.xml?edition=uk
+Politics: http://feeds.bbci.co.uk/news/politics/rss.xml?edition=uk
+Health: http://feeds.bbci.co.uk/news/health/rss.xml?edition=uk
+Education: http://feeds.bbci.co.uk/news/education/rss.xml?edition=uk
+Science/Nature: http://feeds.bbci.co.uk/news/science_and_environment/rss.xml?edition=uk
+Technology: http://feeds.bbci.co.uk/news/technology/rss.xml?edition=uk
+Entertainment: http://feeds.bbci.co.uk/news/entertainment_and_arts/rss.xml?edition=uk
+
+---Sky:
+
+channel tags: atom, title, link, image, description, language,
+              copyright, lastBuildDate, category, ttl
+item tags:    title, link, description, pubDate, guid, enclosure, media
+
+Home: http://feeds.skynews.com/feeds/rss/home.xml
+UK: http://feeds.skynews.com/feeds/rss/uk.xml
+World: http://feeds.skynews.com/feeds/rss/world.xml
+US: http://feeds.skynews.com/feeds/rss/us.xml
+Business: http://feeds.skynews.com/feeds/rss/business.xml
+Politics: http://feeds.skynews.com/feeds/rss/politics.xml
+Technology: http://feeds.skynews.com/feeds/rss/technology.xml
+Entertainment: http://feeds.skynews.com/feeds/rss/entertainment.xml
+Strange News: http://feeds.skynews.com/feeds/rss/strange.xml
+
+---CNN:
+
+channel tags: title, description, link, image, generator, lastBuildDate,
+              pubDate, copyright,language, ttl, atom, feedburner
+item tags:    title, description, link, guid, pubDate, media
+
+Top Stories: http://rss.cnn.com/rss/edition.rss
+World: http://rss.cnn.com/rss/edition_world.rss
+Africa:	http://rss.cnn.com/rss/edition_africa.rss
+Americas: http://rss.cnn.com/rss/edition_americas.rss
+Asia: http://rss.cnn.com/rss/edition_asia.rss
+Europe:	http://rss.cnn.com/rss/edition_europe.rss
+Middle East: http://rss.cnn.com/rss/edition_meast.rss
+US: http://rss.cnn.com/rss/edition_us.rss
+Money: http://rss.cnn.com/rss/money_news_international.rss
+Technology:	http://rss.cnn.com/rss/edition_technology.rss
+Science/Space: http://rss.cnn.com/rss/edition_space.rss
+Entertainment: http://rss.cnn.com/rss/edition_entertainment.rss
+World Sport: http://rss.cnn.com/rss/edition_sport.rss
+Football: http://rss.cnn.com/rss/edition_football.rss
+Golf: http://rss.cnn.com/rss/edition_golf.rss
+Motorsport: http://rss.cnn.com/rss/edition_motorsport.rss
+Tennis: http://rss.cnn.com/rss/edition_tennis.rss
+Travel:	http://rss.cnn.com/rss/edition_travel.rss
+Most Recent: http://rss.cnn.com/rss/cnn_latest.rss
+
+---New York Times:
+
+channel tags: title, atom, description, language, copyright,
+              lastBuildDate, image
+item tags:    title, link, guid, atom, media, description, dc, pubDate, category
+
+US Home Page: http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+International Home Page: http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml
+World: http://rss.nytimes.com/services/xml/rss/nyt/World.xml
+Africa: http://rss.nytimes.com/services/xml/rss/nyt/Africa.xml
+Americas: http://rss.nytimes.com/services/xml/rss/nyt/Americas.xml
+Asia Pacific: http://rss.nytimes.com/services/xml/rss/nyt/AsiaPacific.xml
+Europe: http://rss.nytimes.com/services/xml/rss/nyt/Europe.xml
+Middle East: http://rss.nytimes.com/services/xml/rss/nyt/MiddleEast.xml
+US: http://rss.nytimes.com/services/xml/rss/nyt/US.xml
+US Education: http://rss.nytimes.com/services/xml/rss/nyt/Education.xml
+US Politics: http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml
+Business: http://rss.nytimes.com/services/xml/rss/nyt/Business.xml
+Technology: http://rss.nytimes.com/services/xml/rss/nyt/Technology.xml
+Sports: http://rss.nytimes.com/services/xml/rss/nyt/Sports.xml
+Science: http://rss.nytimes.com/services/xml/rss/nyt/Science.xml
+Environment: http://rss.nytimes.com/services/xml/rss/nyt/Environment.xml
+Space/Cosmos: http://rss.nytimes.com/services/xml/rss/nyt/Space.xml
+Health: http://rss.nytimes.com/services/xml/rss/nyt/Health.xml
+
+---The Independent:
+
+channel tags: title, link, description, atom
+item tags:    title, link, description, pubDate, guid, author, dc, media
+
+UK: http://www.independent.co.uk/news/uk/rss
+World: http://www.independent.co.uk/news/world/rss
+Business: http://www.independent.co.uk/news/business/rss
+People: http://www.independent.co.uk/news/people/rss
+Science: http://www.independent.co.uk/news/science/rss
+Media: http://www.independent.co.uk/news/media/rss
+Education: http://www.independent.co.uk/news/education/rss
+
+---Daily Mail:
+
+channel tags: atom, title, link, description, language, copyright,
+              pubDate, lastBuildDate, category, image
+item tags:    title, link, description, enclosure, pubDate, guid, media
+
+Latest Stories: http://www.dailymail.co.uk/articles.rss
+Home: http://www.dailymail.co.uk/home/index.rss
+News: http://www.dailymail.co.uk/news/index.rss
+US: http://www.dailymail.co.uk/ushome/index.rss
+Australia: http://www.dailymail.co.uk/auhome/index.rss
+Sport: http://www.dailymail.co.uk/sport/index.rss
+TV/Showbiz: http://www.dailymail.co.uk/tvshowbiz/index.rss
+Femail: http://www.dailymail.co.uk/femail/index.rss
+Health: http://www.dailymail.co.uk/health/index.rss
+Science: http://www.dailymail.co.uk/sciencetech/index.rss
+Money: http://www.dailymail.co.uk/money/index.rss
+Travel: http://www.dailymail.co.uk/travel/index.rss
+
+---Fox News:
+
+channel tags: title, link, description, copyright, managingEditor, language,
+              lastBuildDate, webMaster, image
+item tags:    title, linke, author, description, fnc
+
+Latest Headlines: http://feeds.foxnews.com/foxnews/latest?format=xml
+Entertainment: http://feeds.foxnews.com/foxnews/entertainment?format=xml
+Health: http://feeds.foxnews.com/foxnews/health?format=xml
+Politics: http://feeds.foxnews.com/foxnews/politics?format=xml
+Science: http://feeds.foxnews.com/foxnews/science?format=xml
+Tech: http://feeds.foxnews.com/foxnews/tech?format=xml
+
+---The Guardian:
+
+channel tags: title, link, description, language, copyright, pubDate, dc, image
+item tags:    title, link, description, category, pubDate, guid, media, dc
+
+UK: https://www.theguardian.com/uk/rss
+World: https://www.theguardian.com/world/rss
+Politics: https://www.theguardian.com/politics/rss
+Sport: https://www.theguardian.com/uk/sport/rss
+Football: https://www.theguardian.com/football/rss
+Culture: https://www.theguardian.com/uk/culture/rss
+Business: https://www.theguardian.com/uk/business/rss
+Environment: https://www.theguardian.com/uk/environment/rss
+Tech: https://www.theguardian.com/uk/technology/rss
+Travel: https://www.theguardian.com/uk/travel/rss
+
+---Washington Post:
+
+channel tags: title, link, description, language, ttl, image
+item tags:    title, link, guid, pubDate, description, author
+
+Top News: http://www.washingtonpost.com/wp-dyn/rss/linkset/2005/03/24/LI2005032400102.xml
+Front Page: http://www.washingtonpost.com/wp-dyn/rss/print/index.xml
+
+---MTV:
+
+channel tags: title, atom, link, description, lastBuildDate, language, sy
+item tags:    title, link, pubDate, dc, guid, description, relative-post-time,
+              sm, media, wpmeta, related
+
+News: http://www.mtv.com/rss/news/news_full.jhtml
+Movies: http://www.mtv.com/news/movies/feed/
+
+---Buzzfeed:
+
+channel tags: title, link, description, language, copyright,
+              lastBuildDate, managingEditor, webMaster, atom, image
+item tags:    title, link, description, author, guid, pubDate, media
+
+Front Page: https://www.buzzfeed.com/index.xml
+
+---Variety:
+
+channel tags: title, link, description, lastBuildDate, sy, generator,
+              cloud domain, image, atom
+item tags:    title, link, comments, pubDate, dc, category, guid, description,
+              wfw, slash, media
+
+Front Page: http://feeds.feedburner.com/variety/news/frontpage
+
+---IGN:
+
+channel tags: title, link, description, atom
+item tags:    title, link, description, pubDate, guid, content, dc, feedburner
+
+News: http://feeds.ign.com/ign/news?format=xml
