@@ -1,3 +1,5 @@
+package code;
+
 
 //the separate news items within the RSS feed
 public class RSSFeedItem {
