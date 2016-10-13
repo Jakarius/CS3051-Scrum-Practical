@@ -189,3 +189,33 @@ channel tags: title, link, description, atom
 item tags:    title, link, description, pubDate, guid, content, dc, feedburner
 
 News: http://feeds.ign.com/ign/news?format=xml
+
+---Private Eye:
+
+channel tags: title, description, link, copyright, atom
+item tags:    title, link, description, pubDate, guid, comments, enclosure
+
+News:http://www.private-eye.co.uk/rss/rss.php
+
+--Huffington Post: 
+
+Channel tags:	title, link, description
+item tags:		guid, title, author, link, pubDate, description, enclosure
+
+Politics: http://www.huffingtonpost.co.uk/feeds/verticals/uk-politics/news.xml
+Entertainment: http://www.huffingtonpost.co.uk/feeds/verticals/uk-entertainment/news.xml
+Style: http://www.huffingtonpost.co.uk/feeds/verticals/uk-style/news.xml
+Student: http://www.huffingtonpost.co.uk/feeds/verticals/uk-universities-education/news.xml
+Lifestyle: http://www.huffingtonpost.co.uk/feeds/verticals/uk-lifestyle/news.xml
+Comedy: http://www.huffingtonpost.co.uk/feeds/verticals/uk-comedy/news.xml
+Celebrity: http://www.huffingtonpost.co.uk/tag/celebrity/feed/
+News: http://www.huffingtonpost.co.uk/feeds/verticals/uk/news.xml
+Tech: http://www.huffingtonpost.co.uk/feeds/verticals/uk-tech/news.xml
+Sport: http://www.huffingtonpost.co.uk/feeds/verticals/uk-sport/news.xml
+Parents: http://www.huffingtonpost.co.uk/feeds/verticals/uk-parents/news.xml
+
+--The Atlantic
+
+
+
+
