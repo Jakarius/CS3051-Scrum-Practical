@@ -1,3 +1,5 @@
+package code;
+
 import java.util.ArrayList;
 
 //the overall RSS feed
