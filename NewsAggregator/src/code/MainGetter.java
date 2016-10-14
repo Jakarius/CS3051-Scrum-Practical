@@ -15,6 +15,10 @@ import org.w3c.dom.NodeList;
 public class MainGetter {
 public static void main(String[] args) throws Exception {
 		
+	
+		xmlToJson.getJson();
+		if (true){return;}
+	
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 		Document doc = dBuilder.parse("http://feeds.bbci.co.uk/news/world/rss.xml");

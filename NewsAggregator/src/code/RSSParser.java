@@ -74,6 +74,10 @@ public class RSSParser {
 		
 		BufferedReader reader;
 		ArrayList<String> rssLinks = new ArrayList<String>();
+		/* George comment:
+		 *  for some reason for me this is at /cs/home/ga40/GlassFish/glassfish/domains/domain1/config
+		 *  i.e. to update it you must update the file inside the glassfish folder!
+		 */
 		String file = "feedlist.txt";
 		
 		try {

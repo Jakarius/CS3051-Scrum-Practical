@@ -21,17 +21,27 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/test")
 public class WebsocketServer {
     /**
+     * @throws Exception 
      * @OnOpen allows us to intercept the creation of a new session.
      * The session class allows us to send data to the user.
      * In the method onOpen, we'll let the user know that the handshake was 
      * successful.
      */
     @OnOpen
-    public void onOpen(Session session){
+    public void onOpen(Session session) throws Exception{
         System.out.println(session.getId() + " has opened a connection");
         try {
-        	TimeUnit.SECONDS.sleep(5);
-            session.getBasicRemote().sendText("here is some news");
+          
+        /*These are the old tests for the websocket	
+          TimeUnit.SECONDS.sleep(5);
+          session.getBasicRemote().sendText("here is some news");
+            */
+         
+        //this is the reference to the method that gets the rss feeds and puts them in a very basic html format
+        //if i carried on then this would be sending the string representation of a json object for the javascript to parse
+		session.getBasicRemote().sendText(xmlToJson.getJson());
+			
+
         } catch (IOException | InterruptedException ex) {
             ex.printStackTrace();
         }
