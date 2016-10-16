@@ -5,10 +5,86 @@
         <title>News Aggregator</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="main.css" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     </head>
     <body onload="openSocket()">
-    	<h1>Yer News</h1>
-        <p id="news"></p>
+
+        <div id="titleHeader">
+        	<h1>NewsSquare Aggregator</h1>
+        </div>
+
+        <div id="sideBar">
+            <h2>Menu</h2>
+            <input type="checkbox" id="sideBarToggle"/>
+            <label for="sideBarToggle"><span>></span></label>
+            <ul>
+                <li>UK</li>
+                <li>World</li>
+                <li>Technology</li>
+                <li>Sport</li>
+            </ul>
+        </div>
+        <div id="newsCubeArea">
+            <div class="newsCube">
+                <div class="newsCubeContent">
+                    <a href="https://en.wikipedia.org/wiki/Jeb_Bush"><img class="newsCubeImage" src="https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg"/>
+                    <p class="newsCubeHeadline">JEBSURGE ALERT, Jeb Bush wins US Presidential Election in unexpected landslide</p></a>
+                </div>
+            </div>
+            <div class="newsCube">
+                <div class="newsCubeContent">
+                    <img class="newsCubeImage" src="http://newsninja2012.com/wp-content/uploads/2016/08/Screen-Shot-2016-08-04-at-12.57.43-PM.jpg"/>
+                    <p class="newsCubeHeadline">Hillary Clinton wins US Presidential Election with 49% of the vote</p>
+                </div>
+            </div>
+            <div class="newsCube">
+                <div class="newsCubeContent">
+                    <img class="newsCubeImage" src="http://images.huffingtonpost.com/2016-02-15-1455534387-1672884-nbcfiresdonaldtrumpafterhecallsmexicansrapistsanddrugrunners.jpg"/>
+                    <p class="newsCubeHeadline">Trump wins US Presidential Election in "yuge" victory, "really great victory", "tremendous"</p>
+                </div>
+            </div>
+
+            <div class="newsCube">
+                <div class="newsCubeContent">
+                    <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><img class="newsCubeImage" src="http://i.cbc.ca/1.3414124.1456270228!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/putin.jpg"/>
+                    <p class="newsCubeHeadline">Putin listens to US allegations of election tampering and responds incredulously</p></a>
+                </div>
+            </div>
+            <div class="newsCube">
+                <div class="newsCubeContent">
+                    <img class="newsCubeImage" src="http://www.onechicmom.com/wp-content/uploads/2016/07/09_theresamay_r_w.jpg"/>
+                    <p class="newsCubeHeadline">Watch Theresa May's shock transformation into an amphibian mid press conference</p>
+                </div>
+            </div>
+            <div class="newsCube">
+                <div class="newsCubeContent">
+                    <img class="newsCubeImage" src="http://www.labottegadelbarbieri.org/wp-content/uploads/2015/07/merkel-rating-sp-downgrading-jpg-crop_display.jpg"/>
+                    <p class="newsCubeHeadline">Merkel looks concerned</p>
+                </div>
+            </div>
+
+            <div class="newsCube">
+                <div class="newsCubeContent">
+                    <img class="newsCubeImage" src="http://15130-presscdn-0-89.pagely.netdna-cdn.com/wp-content/uploads/2016/09/2701a6d0-clinton-4x3.jpg"/>
+                    <p class="newsCubeHeadline">Hillary Clinton Assassinated By Trump Supporter</p>
+                </div>
+            </div>
+            <div class="newsCube">
+                <div class="newsCubeContent">
+                    <img class="newsCubeImage" src="https://i.ytimg.com/vi/e7UcQcD9INI/maxresdefault.jpg"/>
+                    <p class="newsCubeHeadline">Donald Trump Assassinated By Hillary Supporter</p>
+                </div>
+            </div>
+            <div class="newsCube">
+                <div class="newsCubeContent">
+                    <img class="newsCubeImage" src="RISE_AGAIN.jpg"/>
+                    <p class="newsCubeHeadline">Hillary and Trump Rise Again, Begin Final Battle</p>
+                </div>
+            </div>
+        </div>
+
+
        
         <!-- Script to utilise the WebSocket -->
         <script type="text/javascript">
