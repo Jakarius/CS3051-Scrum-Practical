@@ -1,4 +1,4 @@
-package src.code;
+package code;
 
 
 //the separate news items within the RSS feed
