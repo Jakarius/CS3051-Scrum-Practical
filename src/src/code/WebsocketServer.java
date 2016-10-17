@@ -1,4 +1,4 @@
-package code;
+package src.code;
 
 import java.io.IOException;
 import java.util.Queue;
