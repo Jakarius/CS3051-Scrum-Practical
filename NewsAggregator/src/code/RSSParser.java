@@ -1,8 +1,5 @@
 package code;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -23,61 +20,24 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class RSSParser {
-	public static void main(String[] args) {
-				
-		ArrayList<String> rssLinks = getLinks();
-		RSSFeed[] feeds = new RSSFeed[rssLinks.size()];
-		
-		for (int i = 0; i < rssLinks.size(); i++) {
-		
-			try {
-				//creates a document builder to parse the RSS Feed
-				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-				Document doc = dBuilder.parse(rssLinks.get(i));
-				Element root = doc.getDocumentElement();
-			
-		
-				RSSFeed feed = new RSSFeed();
-			
-				parseFeed(root, feed);
-			
-				feeds[i] = feed;
-		
-				/*
-				//prints out the information as a test
-				System.out.println(feed.getTitle() + "\n" + feed.getDescription() + "\n" + feed.getLink() + "\n\n");
-		
-				ArrayList<RSSFeedItem> items = feed.getItems();
-			
-				for (int j = 0; j < items.size(); j++) {
-					
-					System.out.println(items.get(j).getTitle() + "\n" + items.get(j).getDescription() + "\n" 
-							+ items.get(j).getLink() + "\n" + items.get(j).getPubDate() + "\n");
-				}
-				*/
-				System.out.println(feeds[i].getTitle());
-			}
-			catch (IOException e) {
-				e.printStackTrace();
-			} 
-			catch (ParserConfigurationException e) {
-			e.printStackTrace();
-			} 
-			catch (SAXException e) {
-			e.printStackTrace();
-			}
-		}
-	}
-
+	
 	public static ArrayList<String> getLinks() {
 		
-		BufferedReader reader;
+		ArrayList<String> l = new ArrayList<>();
+		l.add("http://feeds.bbci.co.uk/news/rss.xml?edition=uk");
+		l.add("http://feeds.bbci.co.uk/news/world/rss.xml?edition=uk");
+		l.add("http://feeds.bbci.co.uk/news/uk/rss.xml?edition=uk");
+		l.add("http://feeds.bbci.co.uk/news/england/rss.xml?edition=uk");
+		l.add("http://feeds.bbci.co.uk/news/northern_ireland/rss.xml?edition=uk");
+		l.add("http://feeds.bbci.co.uk/news/scotland/rss.xml?edition=uk");
+		return l;
+		
+		/*BufferedReader reader;
 		ArrayList<String> rssLinks = new ArrayList<String>();
-		/* George comment:
+		 George comment:
 		 *  for some reason for me this is at /cs/home/ga40/GlassFish/glassfish/domains/domain1/config
 		 *  i.e. to update it you must update the file inside the glassfish folder!
-		 */
+		 
 		String file = "feedlist.txt";
 		
 		try {
@@ -100,7 +60,7 @@ public class RSSParser {
 			e.printStackTrace();
 		}
 		
-		return rssLinks;
+		return rssLinks;*/
 	}
 
 	public static void parseFeed(Element root, RSSFeed feed) {

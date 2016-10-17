@@ -4,11 +4,11 @@ package code;
 //the separate news items within the RSS feed
 public class RSSFeedItem {
 
-	String title;
-	String description;
-	String link;
-	String pubDate;
-	String media;
+	private String title;
+	private String description;
+	private String link;
+	private String pubDate;
+	private String media;
 	
 	public RSSFeedItem() {
 		

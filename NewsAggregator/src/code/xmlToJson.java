@@ -18,41 +18,41 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class xmlToJson{
-	
-public static String getJson() throws Exception{
 
-	String Jsontext = "";
-	ArrayList<String> rssLinks = RSSParser.getLinks();
-	
-	for (int i = 0; i < rssLinks.size()/6; i++) {
-		try {
-	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-	Document doc = dBuilder.parse(rssLinks.get(i));
-	Element root = doc.getDocumentElement();
-	RSSFeed feed = new RSSFeed();
-	//this uses Taylor's xml parser
-	RSSParser.parseFeed(root, feed);
-	
-	
-	for (int j = 0; j <feed.getItems().size()/6; j++) {
-		RSSFeedItem item = feed.getItems().get(j);	
-		Jsontext = Jsontext.concat(" <br> <br> "+item.getTitle() + "<br>" + item.getDescription()+"<br><a href=\"url\">" + item.getLink())+"</a>";
-	}
-	
+	public static String getJson() throws Exception{
 
+		String Jsontext = "";
+		ArrayList<String> rssLinks = RSSParser.getLinks();
+
+		for (int i = 0; i < rssLinks.size()/6; i++) {
+			try {
+				DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+				Document doc = dBuilder.parse(rssLinks.get(i));
+				Element root = doc.getDocumentElement();
+				RSSFeed feed = new RSSFeed();
+				//this uses Taylor's xml parser
+				RSSParser.parseFeed(root, feed);
+
+
+				for (int j = 0; j <feed.getItems().size()/6; j++) {
+					RSSFeedItem item = feed.getItems().get(j);	
+					Jsontext = Jsontext.concat(" <br> <br> "+item.getTitle() + "<br>" + item.getDescription()+"<br><a href=\"url\">" + item.getLink())+"</a>";
+				}
+
+
+			}
+			catch (IOException e) {
+				e.printStackTrace();
+			} 
+			catch (ParserConfigurationException e) {
+				e.printStackTrace();
+			} 
+			catch (SAXException e) {
+				e.printStackTrace();
+			}	
 		}
-		catch (IOException e) {
-			e.printStackTrace();
-		} 
-		catch (ParserConfigurationException e) {
-		e.printStackTrace();
-		} 
-		catch (SAXException e) {
-		e.printStackTrace();
-		}	
+		System.out.println(Jsontext);
+		return Jsontext;
 	}
-	System.out.println(Jsontext);
-	return Jsontext;
-}
 }
