@@ -11,13 +11,13 @@
     <body onload="openSocket()">
 
         <div id="titleHeader">
-        	<h1>NewsSquare Aggregator</h1>
+            <h1>NewsSquare Aggregator</h1>
         </div>
-
+ 
         <div id="sideBar">
             <h2>Menu</h2>
-            <input type="checkbox" id="sideBarToggle"/>
-            <label for="sideBarToggle"><span>></span></label>
+            <span id="sideBarButton" onclick="handleSideBarClick()">></span>
+            <h2>Categories</h2>
             <ul>
                 <li>UK</li>
                 <li>World</li>
@@ -94,11 +94,14 @@
             var webSocket;
             var messages = document.getElementById("messages");
            
+            // var testImg = document.createElement("img");
+            // testImg.setAttribute('src', 'https://i.ytimg.com/vi/e7UcQcD9INI/maxresdefault.jpg');
+            // document.body.appendChild(testImg);
            
             function openSocket(){
                 // Ensures only one connection is open at a time
                 if(webSocket !== undefined && webSocket.readyState !== WebSocket.CLOSED){
-                	console.log("WebSocket is already opened.");
+                    console.log("WebSocket is already opened.");
                     return;
                 }
                 // Create a new instance of the websocket
@@ -108,18 +111,52 @@
                  * Binds functions to the listeners for the websocket.
                  */
                 webSocket.onopen = function(event){
-                 	console.log("Connection open");
+                    console.log("Connection open");
                 };
  
                 webSocket.onmessage = function(event){
-                	console.log("Message arrived");
-	                document.getElementById("news").innerHTML = event.data;
+                    console.log("Message arrived");
+                    document.getElementById("news").innerHTML = event.data;
+                    createNewsCube(event.data);
                 };
  
                 webSocket.onclose = function(event){
                     console.log("Connection closed");
                 };
-            }           
+            }
+
+            function createNewsCube(data) {
+                console.log(data);
+            }
+
+            var sideBarExpanded = false;
+
+            function expandSideBar() {
+                document.getElementById("sideBar").style.width = "250px";
+                document.getElementById("newsCubeArea").style.marginLeft = "260px";
+                document.getElementById("newsCubeArea").style.width = "88%";
+                document.getElementById("sideBarButton").style.marginLeft = "200px";
+                document.getElementById("sideBarButton").style.right = "0";
+                sideBarExpanded = true;
+            }
+
+            function shrinkSideBar() {
+                document.getElementById("sideBar").style.width = "40px";
+                document.getElementById("newsCubeArea").style.marginLeft = "50px";
+                document.getElementById("newsCubeArea").style.width = "100%";
+                document.getElementById("sideBarButton").style.marginLeft = "0";
+                sideBarExpanded = false;
+            }
+
+            function handleSideBarClick() {
+                if (sideBarExpanded) {
+                    shrinkSideBar();
+                } else {
+                    expandSideBar();
+                }
+            }
+
+
         </script>
        
     </body>
