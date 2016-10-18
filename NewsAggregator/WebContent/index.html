@@ -94,6 +94,74 @@
                        
             var webSocket;
             var messages = document.getElementById("messages");
+
+            var test = 
+            [
+                {
+                    "title": "SURGEFEED",
+                    "description": "Feed desc.",
+                    "updates": [
+                        {
+                            "title": "JEB",
+                            "description": "Article Desc.",
+                            "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
+                            "pubDate": "1/2/16",
+                            "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+                        },
+                        {
+                            "title": "JEB",
+                            "description": "Article Desc.",
+                            "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
+                            "pubDate": "1/2/16",
+                            "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+                        },
+                        {
+                            "title": "JEB",
+                            "description": "Article Desc.",
+                            "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
+                            "pubDate": "1/2/16",
+                            "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+                        },
+                    ]
+                },
+
+                {
+                    "title": "JEB",
+                    "description": "Feed desc.",
+                    "updates": [
+                        {
+                            "title": "JEB",
+                            "description": "Article Desc.",
+                            "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
+                            "pubDate": "1/2/16",
+                            "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+                        },
+                        {
+                            "title": "JEB",
+                            "description": "Article Desc.",
+                            "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
+                            "pubDate": "1/2/16",
+                            "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+                        },
+                        {
+                            "title": "JEB",
+                            "description": "Article Desc.",
+                            "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
+                            "pubDate": "1/2/16",
+                            "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+                        },
+                    ]
+                }
+            ]
+
+            var inputElement = document.createElement('button');
+            var inputElementText = document.createTextNode("NEWS MAKER");
+            inputElement.appendChild(inputElementText);
+            inputElement.addEventListener('click', function() {
+                updateNews(test);
+            });
+
+            document.getElementById("titleHeader").appendChild(inputElement);
            
             function openSocket(){
                 // Ensures only one connection is open at a time
@@ -114,7 +182,7 @@
                 webSocket.onmessage = function(event){
                     console.log("Message arrived");
                     document.getElementById("news").innerHTML = event.data;
-                    createNewsCube(event.data);
+                    updateNews(event.data);
                 };
  
                 webSocket.onclose = function(event){
@@ -150,39 +218,40 @@
                 }
             }
 
-            var test = {
-                "title": "JEBSURGE",
-                "description": "Article Desc.",
-                "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
-                "pubDate": "1/2/16",
-                "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+            function updateNews(data) {
+                for (var i = 0; i < data.length; i++) {
+                    for (var j = 0; j < data[i].updates.length; j++) {
+                        createNewsCube(data[i].updates[j]);
+                    }
+                }
             }
 
-            function createNewsCube() {
+            function createNewsCube(data) {
                 //Data should be ONE single news story.
-                console.log(test);
+                console.log(data);
                 var newsCube = document.createElement("div");
                 var newsCubeContent = document.createElement("div");
 
                 var newsCubeImageLink = document.createElement("a");
-                newsCubeImageLink.setAttribute('href', test.link);
+                newsCubeImageLink.setAttribute('href', data.link);
 
                 var newsCubeHeadlineLink = newsCubeImageLink.cloneNode(false);
 
                 var newsCubeHeadline = document.createElement("p");
-                var titleTextNode = document.createTextNode(test.title);
+                var titleTextNode = document.createTextNode(data.title);
                 newsCubeHeadline.appendChild(titleTextNode);
 
                 var newsCubeDescription = document.createElement("p");
-                var descriptionTextNode = document.createTextNode(test.description);
+                var descriptionTextNode = document.createTextNode(data.description);
                 newsCubeDescription.appendChild(descriptionTextNode);
 
                 var newsCubeImage = document.createElement("img");
-                newsCubeImage.setAttribute('src', test.media);
+                newsCubeImage.setAttribute('src', data.media);
 
                 newsCube.setAttribute('class', "newsCube");
                 newsCubeContent.setAttribute('class', "newsCubeContent");
                 newsCubeHeadline.setAttribute('class', "newsCubeHeadline");
+                newsCubeDescription.setAttribute('class', "newsCubeDescription");
                 newsCubeImage.setAttribute('class', "newsCubeImage");
 
                 document.getElementById("newsCubeArea").appendChild(newsCube);
@@ -191,6 +260,7 @@
                 newsCubeContent.appendChild(newsCubeHeadlineLink);
                 newsCubeImageLink.appendChild(newsCubeImage);
                 newsCubeHeadlineLink.appendChild(newsCubeHeadline);
+                newsCubeHeadlineLink.appendChild(newsCubeDescription);
 
             }
 
