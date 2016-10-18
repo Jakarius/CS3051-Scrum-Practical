@@ -29,8 +29,8 @@
         <div id="newsCubeArea">
             <div class="newsCube">
                 <div class="newsCubeContent">
-                    <a href="https://en.wikipedia.org/wiki/Jeb_Bush"><img class="newsCubeImage" src="https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg"/>
-                    <p class="newsCubeHeadline">JEBSURGE ALERT, Jeb Bush wins US Presidential Election in unexpected landslide</p></a>
+                    <a href="https://en.wikipedia.org/wiki/Jeb_Bush"><img class="newsCubeImage" src="https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg"/></a>
+                    <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><p class="newsCubeHeadline">JEBSURGE ALERT, Jeb Bush wins US Presidential Election in unexpected landslide</p></a>
                 </div>
             </div>
             <div class="newsCube">
@@ -48,8 +48,8 @@
 
             <div class="newsCube">
                 <div class="newsCubeContent">
-                    <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><img class="newsCubeImage" src="http://i.cbc.ca/1.3414124.1456270228!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/putin.jpg"/>
-                    <p class="newsCubeHeadline">Putin listens to US allegations of election tampering and responds incredulously</p></a>
+                    <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><img class="newsCubeImage" src="http://i.cbc.ca/1.3414124.1456270228!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/putin.jpg"/></a>
+                    <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><p class="newsCubeHeadline">Putin listens to US allegations of election tampering and responds incredulously</p></a>
                 </div>
             </div>
             <div class="newsCube">
@@ -95,10 +95,6 @@
             var webSocket;
             var messages = document.getElementById("messages");
            
-            // var testImg = document.createElement("img");
-            // testImg.setAttribute('src', 'https://i.ytimg.com/vi/e7UcQcD9INI/maxresdefault.jpg');
-            // document.body.appendChild(testImg);
-           
             function openSocket(){
                 // Ensures only one connection is open at a time
                 if(webSocket !== undefined && webSocket.readyState !== WebSocket.CLOSED){
@@ -126,9 +122,6 @@
                 };
             }
 
-            function createNewsCube(data) {
-                console.log(data);
-            }
 
             var sideBarExpanded = false;
 
@@ -156,6 +149,51 @@
                     expandSideBar();
                 }
             }
+
+            var test = {
+                "title": "JEBSURGE",
+                "description": "Article Desc.",
+                "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
+                "pubDate": "1/2/16",
+                "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+            }
+
+            function createNewsCube() {
+                //Data should be ONE single news story.
+                console.log(test);
+                var newsCube = document.createElement("div");
+                var newsCubeContent = document.createElement("div");
+
+                var newsCubeImageLink = document.createElement("a");
+                newsCubeImageLink.setAttribute('href', test.link);
+
+                var newsCubeHeadlineLink = newsCubeImageLink.cloneNode(false);
+
+                var newsCubeHeadline = document.createElement("p");
+                var titleTextNode = document.createTextNode(test.title);
+                newsCubeHeadline.appendChild(titleTextNode);
+
+                var newsCubeDescription = document.createElement("p");
+                var descriptionTextNode = document.createTextNode(test.description);
+                newsCubeDescription.appendChild(descriptionTextNode);
+
+                var newsCubeImage = document.createElement("img");
+                newsCubeImage.setAttribute('src', test.media);
+
+                newsCube.setAttribute('class', "newsCube");
+                newsCubeContent.setAttribute('class', "newsCubeContent");
+                newsCubeHeadline.setAttribute('class', "newsCubeHeadline");
+                newsCubeImage.setAttribute('class', "newsCubeImage");
+
+                document.getElementById("newsCubeArea").appendChild(newsCube);
+                newsCube.appendChild(newsCubeContent);
+                newsCubeContent.appendChild(newsCubeImageLink);
+                newsCubeContent.appendChild(newsCubeHeadlineLink);
+                newsCubeImageLink.appendChild(newsCubeImage);
+                newsCubeHeadlineLink.appendChild(newsCubeHeadline);
+
+            }
+
 
 
         </script>
