@@ -7,31 +7,38 @@ body {
 	font-family: "Open-Sans", sans-serif;
 	margin: 0;
 	padding: 0;
+	height: 100%;
 }
 
 h1 {
 	font-size: 3em;
 	color: #eeeeee;
-	padding-top: 1%;
-	padding-bottom: 1%;
+	margin-top: 1%;
+	margin-bottom: 1%;
 }
 
 #titleHeader {
+	position: fixed;
+	top: 0;
 	width: 100%;
 	background-color: #444444;
 	text-align: center;
 	vertical-align: middle;
+	z-index: 1;
 }
 
 #sideBar {
-	position: absolute;
+	position: fixed;
 	color: #eeeeee;
 	background-color: #222222;
 	overflow-x: hidden;
+	top: 0;
+	bottom: 0;
 	height: 100%;
 	width: 40px;
 	padding-left: 1%;
 	transition: 0.5s ease-in-out;
+	z-index: 2;
 }
 
 ul li {
@@ -42,19 +49,20 @@ ul li {
 	height: 100%;
 }
 
-span {
+#sideBarButton {
 	position: absolute;
 	text-align: left;
 	font-size: 1.5em;
 	top: 0;
 	left: 0;
-	background: gray;
-	padding: 0.5em 1em 0.5em 1em;
+	background: #3388dd;
+	padding: 1.35em 1em 1.35em 1.1em;
 	transition: 0.5s ease-in-out;
 }
 
 #newsCubeArea {
 	position: relative;
+	top: 130px;
 	height: 100%;
 	width: 100%;
 	margin-left: 50px;
