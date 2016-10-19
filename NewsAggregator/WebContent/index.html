@@ -20,29 +20,32 @@
             <br>
             <h2>Categories</h2>
             <ul>
-                <li>UK</li>
-                <li>World</li>
-                <li>Technology</li>
-                <li>Sport</li>
+                <li><input type="checkbox" id="ukCheck" checked="true">UK</input></li>
+                <li><input type="checkbox" id="worldCheck" checked="true">World</input></li>
+                <li><input type="checkbox" id="techCheck" checked="true">Technology</input></li>
+                <li><input type="checkbox" id="sportCheck" checked="true">Sport</input></li>
             </ul>
         </div>
         <div id="newsCubeArea">
-            <div class="newsCube">
+            <!-- <div class="newsCube">
                 <div class="newsCubeContent">
                     <a href="https://en.wikipedia.org/wiki/Jeb_Bush"><img class="newsCubeImage" src="https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg"/></a>
                     <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><p class="newsCubeHeadline">JEBSURGE ALERT, Jeb Bush wins US Presidential Election in unexpected landslide</p></a>
+                    <p>uk</p>
                 </div>
             </div>
             <div class="newsCube">
                 <div class="newsCubeContent">
                     <img class="newsCubeImage" src="http://newsninja2012.com/wp-content/uploads/2016/08/Screen-Shot-2016-08-04-at-12.57.43-PM.jpg"/>
                     <p class="newsCubeHeadline">Hillary Clinton wins US Presidential Election with 49% of the vote</p>
+                    <p>sport</p>
                 </div>
             </div>
             <div class="newsCube">
                 <div class="newsCubeContent">
                     <img class="newsCubeImage" src="http://images.huffingtonpost.com/2016-02-15-1455534387-1672884-nbcfiresdonaldtrumpafterhecallsmexicansrapistsanddrugrunners.jpg"/>
                     <p class="newsCubeHeadline">Trump wins US Presidential Election in "yuge" victory, "really great victory", "tremendous"</p>
+                    <p>world</p>
                 </div>
             </div>
 
@@ -50,6 +53,7 @@
                 <div class="newsCubeContent">
                     <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><img class="newsCubeImage" src="http://i.cbc.ca/1.3414124.1456270228!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/putin.jpg"/></a>
                     <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><p class="newsCubeHeadline">Putin listens to US allegations of election tampering and responds incredulously</p></a>
+                    <p>technology</p>
                 </div>
             </div>
             <div class="newsCube">
@@ -62,6 +66,7 @@
                 <div class="newsCubeContent">
                     <img class="newsCubeImage" src="http://www.labottegadelbarbieri.org/wp-content/uploads/2015/07/merkel-rating-sp-downgrading-jpg-crop_display.jpg"/>
                     <p class="newsCubeHeadline">Merkel looks concerned</p>
+                    <p>technology</p>
                 </div>
             </div>
 
@@ -69,25 +74,24 @@
                 <div class="newsCubeContent">
                     <img class="newsCubeImage" src="http://15130-presscdn-0-89.pagely.netdna-cdn.com/wp-content/uploads/2016/09/2701a6d0-clinton-4x3.jpg"/>
                     <p class="newsCubeHeadline">Hillary Clinton Assassinated By Trump Supporter</p>
+                    <p>world</p>
                 </div>
             </div>
             <div class="newsCube">
                 <div class="newsCubeContent">
                     <img class="newsCubeImage" src="https://i.ytimg.com/vi/e7UcQcD9INI/maxresdefault.jpg"/>
                     <p class="newsCubeHeadline">Donald Trump Assassinated By Hillary Supporter</p>
+                    <p>uk</p>
                 </div>
             </div>
             <div class="newsCube">
                 <div class="newsCubeContent">
                     <img class="newsCubeImage" src="RISE_AGAIN.jpg"/>
                     <p class="newsCubeHeadline">Hillary and Trump Rise Again, Begin Final Battle</p>
+                    <p>sport</p>
                 </div>
-            </div>
+            </div> -->
         </div>
-        
-        <p id="news"></p>
-
-
        
         <!-- Script to utilise the WebSocket -->
         <script type="text/javascript">
@@ -106,6 +110,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
+                            "category": "sport",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                         {
@@ -113,6 +118,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
+                            "category": "world",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                         {
@@ -120,6 +126,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
+                            "category": "uk",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                     ]
@@ -134,6 +141,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
+                            "category": "world",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                         {
@@ -141,6 +149,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
+                            "category": "uk",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                         {
@@ -148,6 +157,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
+                            "category": "technology",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                     ]
@@ -159,6 +169,22 @@
             inputElement.appendChild(inputElementText);
             inputElement.addEventListener('click', function() {
                 updateNews(test);
+            });
+
+            ukCheck.addEventListener('change', function() {
+                filterNews("uk", ukCheck);
+            });
+
+            worldCheck.addEventListener('change', function() {
+                filterNews("world", worldCheck);
+            });
+
+            techCheck.addEventListener('change', function() {
+                filterNews("technology", techCheck);
+            });
+
+            sportCheck.addEventListener('change', function() {
+                filterNews("sport", sportCheck);
             });
 
             document.getElementById("titleHeader").appendChild(inputElement);
@@ -181,7 +207,6 @@
  
                 webSocket.onmessage = function(event){
                     console.log("Message arrived");
-                    document.getElementById("news").innerHTML = event.data;
                     updateNews(event.data);
                 };
  
@@ -228,7 +253,7 @@
 
             function createNewsCube(data) {
                 //Data should be ONE single news story.
-                console.log(data);
+                // console.log(data);
                 var newsCube = document.createElement("div");
                 var newsCubeContent = document.createElement("div");
 
@@ -245,6 +270,10 @@
                 var descriptionTextNode = document.createTextNode(data.description);
                 newsCubeDescription.appendChild(descriptionTextNode);
 
+                var newsCubeCategory = document.createElement("p");
+                var categoryTextNode = document.createTextNode(data.category);
+                newsCubeCategory.appendChild(categoryTextNode);
+
                 var newsCubeImage = document.createElement("img");
                 newsCubeImage.setAttribute('src', data.media);
 
@@ -260,8 +289,24 @@
                 newsCubeContent.appendChild(newsCubeHeadlineLink);
                 newsCubeImageLink.appendChild(newsCubeImage);
                 newsCubeHeadlineLink.appendChild(newsCubeHeadline);
+                newsCubeContent.appendChild(newsCubeCategory);
                 newsCubeHeadlineLink.appendChild(newsCubeDescription);
 
+            }
+
+            function filterNews(filter, checkBox) {
+                var newsCubes = document.getElementsByClassName("newsCube");
+                for (var i = 0; i < newsCubes.length; i++) {
+                    if (newsCubes[i].children[0].children[2].innerHTML === filter) {
+                        if (checkBox.checked) {
+                            console.log("FUCK");
+                            newsCubes[i].style.visibility = "visible";
+                        } else {
+                            console.log("BOOP");
+                            newsCubes[i].style.visibility = "hidden";
+                        }
+                    }
+                }
             }
 
 
