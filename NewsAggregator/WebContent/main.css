@@ -145,6 +145,14 @@ ul li {
     transition: opacity .3s ease-in-out;
 }
 
+.categoryDiv h1 {
+	position: relative;
+	margin-right: 5%;
+	color: #3388dd;
+	line-height: 50px;
+	text-align: center;
+}
+
 @media only screen and (max-width: 1200px) {
 	h1 { font-size: 2em; }
 	.newsCubeHeadline { font-size: 1.5em; }

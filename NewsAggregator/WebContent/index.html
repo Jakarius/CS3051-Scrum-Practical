@@ -27,6 +27,21 @@
             </ul>
         </div>
         <div id="newsCubeArea">
+            <div id="UKArea" class="categoryDiv">
+                <h1>UK</h1>
+            </div>
+
+            <div id="worldArea" class="categoryDiv">
+                <h1>WORLD</h1>
+            </div>
+
+            <div id="technologyArea" class="categoryDiv">
+                <h1>TECHNOLOGY</h1>
+            </div>
+
+            <div id="sportArea" class="categoryDiv">
+                <h1>SPORT</h1>
+            </div>
             <!-- <div class="newsCube">
                 <div class="newsCubeContent">
                     <a href="https://en.wikipedia.org/wiki/Jeb_Bush"><img class="newsCubeImage" src="https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg"/></a>
@@ -129,6 +144,22 @@
                             "category": "uk",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
+                        {
+                            "title": "JOB",
+                            "description": "Article Desc.",
+                            "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
+                            "pubDate": "1/2/16",
+                            "category": "uk",
+                            "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+                        },
+                        {
+                            "title": "JAB",
+                            "description": "Article Desc.",
+                            "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
+                            "pubDate": "1/2/16",
+                            "category": "uk",
+                            "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
+                        },
                     ]
                 },
 
@@ -149,7 +180,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
-                            "category": "uk",
+                            "category": "world",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                         {
@@ -243,39 +274,71 @@
                 }
             }
 
+            var newsStoriesCategorised = {};
+            var categories = ["uk", "world", "technology", "sport"];
+
+            newsStoriesCategorised.uk = [];
+            newsStoriesCategorised.world = [];
+            newsStoriesCategorised.technology = [];
+            newsStoriesCategorised.sport = [];
+
             function updateNews(data) {
                 for (var i = 0; i < data.length; i++) {
                     for (var j = 0; j < data[i].updates.length; j++) {
-                        createNewsCube(data[i].updates[j]);
+                        var category = data[i].updates[j].category;
+                        if (category != "") {
+                            if (newsStoriesCategorised[category].indexOf(data[i].updates[j]) === -1) {
+                                newsStoriesCategorised[category].push(data[i].updates[j]);
+                            } else {
+                                console.log("Leaving out dup");
+                            }
+                        }
+                    }
+                }
+                // console.log(newsStoriesCategorised);
+                for (var key in newsStoriesCategorised) {
+                    console.log(key);
+                    if (!newsStoriesCategorised.hasOwnProperty(key)) continue;
+                    for (var i = 0; i < newsStoriesCategorised[key].length; i++) {
+                        createNewsCube(newsStoriesCategorised[key][i]);
                     }
                 }
             }
 
-            function createNewsCube(data) {
+            function createCategoryCubes(category) {
+                for (var i = 0; i < newsStoriesCategorised[category].length; i++) {
+                    createNewsCube(newsStoriesCategorised[category][i]);
+                }
+            }
+
+            function createNewsCube(storyObject) {
                 //Data should be ONE single news story.
-                // console.log(data);
+
+                console.log(storyObject);
                 var newsCube = document.createElement("div");
                 var newsCubeContent = document.createElement("div");
 
                 var newsCubeImageLink = document.createElement("a");
-                newsCubeImageLink.setAttribute('href', data.link);
+                newsCubeImageLink.setAttribute('href', storyObject.link);
 
                 var newsCubeHeadlineLink = newsCubeImageLink.cloneNode(false);
 
                 var newsCubeHeadline = document.createElement("p");
-                var titleTextNode = document.createTextNode(data.title);
+                var titleTextNode = document.createTextNode(storyObject.title);
                 newsCubeHeadline.appendChild(titleTextNode);
 
                 var newsCubeDescription = document.createElement("p");
-                var descriptionTextNode = document.createTextNode(data.description);
+                var descriptionTextNode = document.createTextNode(storyObject.description);
                 newsCubeDescription.appendChild(descriptionTextNode);
 
                 var newsCubeCategory = document.createElement("p");
-                var categoryTextNode = document.createTextNode(data.category);
+                var categoryTextNode = document.createTextNode(storyObject.category);
                 newsCubeCategory.appendChild(categoryTextNode);
 
+                var categoryDiv = getCategoryDiv(storyObject.category);
+
                 var newsCubeImage = document.createElement("img");
-                newsCubeImage.setAttribute('src', data.media);
+                newsCubeImage.setAttribute('src', storyObject.media);
 
                 newsCube.setAttribute('class', "newsCube");
                 newsCubeContent.setAttribute('class', "newsCubeContent");
@@ -283,7 +346,7 @@
                 newsCubeDescription.setAttribute('class', "newsCubeDescription");
                 newsCubeImage.setAttribute('class', "newsCubeImage");
 
-                document.getElementById("newsCubeArea").appendChild(newsCube);
+                document.getElementById(categoryDiv).appendChild(newsCube);
                 newsCube.appendChild(newsCubeContent);
                 newsCubeContent.appendChild(newsCubeImageLink);
                 newsCubeContent.appendChild(newsCubeHeadlineLink);
@@ -291,21 +354,41 @@
                 newsCubeHeadlineLink.appendChild(newsCubeHeadline);
                 newsCubeContent.appendChild(newsCubeCategory);
                 newsCubeHeadlineLink.appendChild(newsCubeDescription);
-
+                // console.log(storyObject);
             }
 
             function filterNews(filter, checkBox) {
                 var newsCubes = document.getElementsByClassName("newsCube");
-                for (var i = 0; i < newsCubes.length; i++) {
-                    if (newsCubes[i].children[0].children[2].innerHTML === filter) {
-                        if (checkBox.checked) {
-                            console.log("FUCK");
-                            newsCubes[i].style.visibility = "visible";
-                        } else {
-                            console.log("BOOP");
-                            newsCubes[i].style.visibility = "hidden";
-                        }
+                // for (var i = 0; i < newsCubes.length; i++) {
+                var categoryDiv = document.getElementById(getCategoryDiv(filter));
+                if (checkBox.checked) {
+                    categoryDiv.style.visibility = "visible";
+                    // newsCubes[i].style.visibility = "visible";
+                    createCategoryCubes(filter);
+                } else {
+                    var categoryChildrenLength = categoryDiv.children.length;
+                    for (var i = 1; i < categoryChildrenLength; i++) {
+                        categoryDiv.removeChild(categoryDiv.children[1]);
+                        console.log(categoryDiv.children.length);
+                        console.log(categoryDiv.children);
                     }
+                    categoryDiv.style.visibility = "hidden";
+                    // newsCubes[i].style.visibility = "hidden";
+                }
+                    // if (newsCubes[i].children[0].children[2].innerHTML === filter) {
+                    // }
+                // }
+            }
+
+            function getCategoryDiv(category) {
+                if (category === "uk") {
+                    return "UKArea";
+                } else if (category === "world") {
+                    return "worldArea";
+                } else if (category === "technology") {
+                    return "technologyArea";
+                } else if (category === "sport") {
+                    return "sportArea";
                 }
             }
 
