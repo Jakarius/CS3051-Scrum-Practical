@@ -28,7 +28,6 @@ p {
 	background-color: #444444;
 	text-align: center;
 	vertical-align: middle;
-	z-index: 1;
 }
 
 #sideBar {
@@ -42,7 +41,6 @@ p {
 	width: 40px;
 	padding-left: 1%;
 	transition: 0.5s ease-in-out;
-	z-index: 2;
 }
 
 ul {
@@ -79,8 +77,8 @@ ul li {
 }
 
 .newsCube { 
-	float: left;
 	position: relative;
+	display: inline-block;
 	width: 29%;
 	padding-bottom: 29%;
 	margin: 1.66%;

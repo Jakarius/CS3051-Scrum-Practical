@@ -14,18 +14,6 @@
             <h1>NewsSquare Aggregator</h1>
         </div>
  
-        <div id="sideBar">
-            <h2>Menu</h2>
-            <span id="sideBarButton" onclick="handleSideBarClick()">></span>
-            <br>
-            <h2>Categories</h2>
-            <ul>
-                <li><input type="checkbox" id="ukCheck" checked="true">UK</input></li>
-                <li><input type="checkbox" id="worldCheck" checked="true">World</input></li>
-                <li><input type="checkbox" id="techCheck" checked="true">Technology</input></li>
-                <li><input type="checkbox" id="sportCheck" checked="true">Sport</input></li>
-            </ul>
-        </div>
         <div id="newsCubeArea">
             <div id="UKArea" class="categoryDiv">
                 <h1>UK</h1>
@@ -108,11 +96,25 @@
             </div> -->
         </div>
        
+        <div id="sideBar">
+            <h2>Menu</h2>
+            <span id="sideBarButton" onclick="handleSideBarClick()">></span>
+            <br>
+            <h2>Categories</h2>
+            <ul>
+                <li><input type="checkbox" id="ukCheck" checked="true">UK</input></li>
+                <li><input type="checkbox" id="worldCheck" checked="true">World</input></li>
+                <li><input type="checkbox" id="techCheck" checked="true">Technology</input></li>
+                <li><input type="checkbox" id="sportCheck" checked="true">Sport</input></li>
+            </ul>
+        </div>
+
         <!-- Script to utilise the WebSocket -->
         <script type="text/javascript">
                        
             var webSocket;
             var messages = document.getElementById("messages");
+
 
             var test = 
             [
@@ -149,7 +151,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
-                            "category": "uk",
+                            "category": "",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                         {
@@ -157,7 +159,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
-                            "category": "uk",
+                            "category": "",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                     ]
@@ -180,7 +182,7 @@
                             "description": "Article Desc.",
                             "link": "http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211",
                             "pubDate": "1/2/16",
-                            "category": "world",
+                            "category": "",
                             "media": "https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg",
                         },
                         {
@@ -218,6 +220,26 @@
                 filterNews("sport", sportCheck);
             });
 
+            // document.addEventListener('DOMContentLoaded', function() {
+            //     loadPreferences();
+            // });
+
+            function loadPreferences() {
+                var pattern = /(\w*)CatPref\w*/;
+                for (var key in localStorage) {
+                    var match = pattern.exec(key);
+                    if (match != null) {
+                        console.log(document.getElementById(ukCheck));
+                        if (localStorage[key] === "true") {
+                            [match[1] + "Check"].checked = true;
+                            window[match[1]+"Check"].checked = true;
+                        } else {
+                            window[match[1]+"Check"].checked = false;
+                        }
+                    }
+                }
+            }
+
             document.getElementById("titleHeader").appendChild(inputElement);
            
             function openSocket(){
@@ -238,6 +260,7 @@
  
                 webSocket.onmessage = function(event){
                     console.log("Message arrived");
+                    console.log(event);
                     updateNews(event.data);
                 };
  
@@ -362,10 +385,12 @@
                 // for (var i = 0; i < newsCubes.length; i++) {
                 var categoryDiv = document.getElementById(getCategoryDiv(filter));
                 if (checkBox.checked) {
+                    localStorage.setItem(filter + 'CatPref', 'true');
                     categoryDiv.style.visibility = "visible";
                     // newsCubes[i].style.visibility = "visible";
                     createCategoryCubes(filter);
                 } else {
+                    localStorage.setItem(filter + 'CatPref', 'false');
                     var categoryChildrenLength = categoryDiv.children.length;
                     for (var i = 1; i < categoryChildrenLength; i++) {
                         categoryDiv.removeChild(categoryDiv.children[1]);
