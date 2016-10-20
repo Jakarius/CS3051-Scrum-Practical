@@ -11,15 +11,16 @@ import javax.json.JsonObjectBuilder;
 
 public class RSSDataStore {
 	private Set<RSSFeed> feedDataSet;
-
-	public RSSDataStore(List<String> rssUrls, Logger logger) {
+	private static final Logger logger = Logger.getLogger("RSSDataStore");
+	
+	public RSSDataStore(List<String> rssUrls) {
 		feedDataSet = new HashSet<>();
 		for (String url: rssUrls) {
-			add(new RSSFeed(url, logger));
+			add(new RSSFeed(url));
 		}
 	}
 
-	public String update(long feedWait) {
+	public String update() {
 		Set<JsonObjectBuilder> updateData = new HashSet<>();
 		for (RSSFeed feed : feedDataSet) {
 			JsonObjectBuilder objB = feed.update();
@@ -47,5 +48,29 @@ public class RSSDataStore {
 		}
 		
 		return arrayBuilder.build().toString();
+	}
+	
+	public String toJson() {
+		Set<JsonObjectBuilder> jsonObjects = new HashSet<>();
+		for (RSSFeed feed : feedDataSet) {
+			JsonObjectBuilder objB = feed.getObjectBuilder();
+			if (objB != null) jsonObjects.add(objB);
+		}
+		return toJson(jsonObjects);
+	}
+
+	class Updater implements Runnable {
+		private final RSSFeed feed;
+		private final Set<JsonObjectBuilder> updateData;
+		
+		public Updater(RSSFeed feed, Set<JsonObjectBuilder> updateData) {
+			this.feed = feed;
+			this.updateData = updateData;
+		}
+		
+		public void run() {
+			JsonObjectBuilder objB = feed.update();
+			if (objB != null) updateData.add(objB);
+		}
 	}
 }

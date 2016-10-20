@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,9 +17,9 @@ public class Test {
 
 	public static void main(String[] args) {
 		List<String> rssUrls = getURLs();
-		Logger logger = Logger.getLogger("BackgroundProcess");
 		
-		init(rssUrls, logger);
+		init(rssUrls);
+		update();
 		update();
 	}
 	
@@ -39,10 +38,10 @@ public class Test {
 	// the logic is all the same
 	private static Set<RSSFeed> feedDataSet;
 	
-	private static void init(List<String> rssUrls, Logger logger) {
+	private static void init(List<String> rssUrls) {
 		feedDataSet = new HashSet<>();
 		for (String url: rssUrls) {
-			add(new RSSFeed(url, logger));
+			add(new RSSFeed(url));
 		}
 	}
 	
@@ -52,15 +51,16 @@ public class Test {
 	
 	private static String update() {
 		Set<JsonObjectBuilder> updateData = new HashSet<>();
-		int success = 0, failure = 0;
-		for (RSSFeed feed : feedDataSet) {
+		int _new = 0, empty = 0;
+		for (RSSFeed feed : feedDataSet) {         
 			JsonObjectBuilder objB = feed.update();
-			if (objB != null) {
+			if (objB != null) {                    
 				updateData.add(objB);
-				success++;
-			} else failure++;
+				_new++;
+				System.out.println(objB.build().toString());
+			} else empty++;
 			
-			System.out.println("Success: " + success + " | Failure: " + failure);
+			System.out.println("New: " + _new + " | Empty: " + empty);
 		}
 		return toJson(updateData);
 	}

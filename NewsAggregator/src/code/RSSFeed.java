@@ -20,7 +20,6 @@ import org.xml.sax.SAXException;
 
 public class RSSFeed {
 	private final Deque<RSSFeedItem> itemDeque = new ArrayDeque<>();
-	private static final int maxDequeSize = 5;
 	
 	private final String url;
 	private String title, description;
@@ -28,11 +27,10 @@ public class RSSFeed {
 
 	private DocumentBuilder dBuilder;
 	private Document prevRSSDoc;
-	private final Logger logger;
+	private static final Logger logger = Logger.getLogger("RSSFeed");
 	
-	public RSSFeed(String url, Logger logger) {
+	public RSSFeed(String url) {
 		this.url = url;
-		this.logger = logger;
 		try {
 			dBuilder = DocumentBuilderFactory
 					.newInstance()
@@ -57,29 +55,33 @@ public class RSSFeed {
 		Deque<RSSFeedItem> pulledData = pullFeed();
 		if (pulledData == null || pulledData.isEmpty()) return null;
 		
-		Deque<RSSFeedItem> newData = new ArrayDeque<>();
+		Deque<RSSFeedItem> newData = null;
 		
 		RSSFeedItem newItem;
 		while (!pulledData.isEmpty()) {
 			newItem = pulledData.removeLast();
 			if (!itemDeque.contains(newItem)) {
 				
+				// Initialize
+				if (newData == null) newData = new ArrayDeque<>();
+				
 				newData.add(newItem);
 				itemDeque.push(newItem);
 				
-				if (itemDeque.size() > maxDequeSize) {
+				if (itemDeque.size() > RSSParser.maxItemsStored) {
 					itemDeque.removeLast();
 				}
 			}
 		}
 		
+		if (newData == null) return null;
 		return getObjectBuilder(newData);
 	}
 	
 	private Deque<RSSFeedItem> pullFeed() {
 		try {
 			Document doc = dBuilder.parse(url);
-			if (prevRSSDoc == doc) {
+			if (prevRSSDoc != null && prevRSSDoc.isEqualNode(doc)) {
 				return null;
 			} else {
 				prevRSSDoc = doc;
@@ -103,14 +105,14 @@ public class RSSFeed {
 			logger.log(Level.WARNING, "Error parsing XML from feed: " + url);
 			
 		} catch (Exception e) {
-			logger.log(Level.WARNING, "Unknown error from feed: " + url +
-					". Printing stack trace...");
-			e.printStackTrace();
+			logger.log(Level.WARNING, "Unexpected error from feed: " + url);
+			// e.printStackTrace();
 		}
 		return null;
 	}
 
 	private JsonObjectBuilder getObjectBuilder(Deque<RSSFeedItem> newData) {		
+		if (!initialised) return null;
 		
 		JsonObjectBuilder objectBuilder =
 			Json.createObjectBuilder()
@@ -126,5 +128,9 @@ public class RSSFeed {
 		
 		objectBuilder.add("updates", arrayBuilder);
 		return objectBuilder;
+	}
+	
+	public JsonObjectBuilder getObjectBuilder() {
+		return getObjectBuilder(itemDeque);
 	}
 }

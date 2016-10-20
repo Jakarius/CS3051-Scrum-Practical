@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.ApplicationScoped;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -23,6 +24,9 @@ import javax.websocket.server.ServerEndpoint;
 @ApplicationScoped
 @ServerEndpoint("/test")
 public class WebsocketServer {
+	
+	@EJB
+	BackgroundProcess backgroundProcess;
 
 	private static final Logger logger = Logger.getLogger("WebsocketServer");
 	/* Queue for all open WebSocket sessions */
@@ -43,9 +47,16 @@ public class WebsocketServer {
 	
 	@OnOpen
 	public void openConnection(Session session) {
-		/* Register this connection in the queue */
-		queue.add(session);
-		logger.log(Level.INFO, "Connection opened.");
+		try {
+			/* Register this connection in the queue */
+			queue.add(session);
+			logger.log(Level.INFO, "Connection opened.");
+			String json = backgroundProcess.getNewConnectionJson();
+			session.getBasicRemote().sendText(json);
+			logger.log(Level.INFO, "Sent initial data to new client.");
+		} catch (IOException e) {
+			logger.log(Level.INFO, e.toString());
+		}
 	}
 
 	@OnClose
