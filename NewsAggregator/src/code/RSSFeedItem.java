@@ -40,6 +40,11 @@ public class RSSFeedItem {
 		return media;
 	}
 	
+	@Override
+	public boolean equals(Object item) {
+		return link.equals(((RSSFeedItem) item).link);
+	}
+	
 	public JsonObjectBuilder getObjectBuilder() {
 		JsonObjectBuilder objB = Json.createObjectBuilder();
 		if (title != null) 			objB.add("title", title);

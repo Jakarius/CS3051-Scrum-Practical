@@ -1,7 +1,6 @@
 package code;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
 
 import javax.xml.xpath.XPath;
@@ -15,6 +14,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class RSSParser {
+	public static final int maxItemsStored = 5;
 
 	public static Deque<RSSFeedItem> initAndParseFeed(Element root, RSSFeed feedQueue)
 			throws XPathExpressionException {
@@ -54,7 +54,9 @@ public class RSSParser {
 
 		Deque<RSSFeedItem> updateData = new ArrayDeque<>();
 		//loops through every item in the feed to get the information
-		for (int i = 0; i < list.getLength(); i++) {
+		int sz = maxItemsStored;
+		if (list.getLength() < sz) sz = list.getLength();
+		for (int i = 0; i < sz; i++) {
 
 			Node node = list.item(i);
 

@@ -181,6 +181,7 @@
  
                 webSocket.onmessage = function(event){
                     console.log("Message arrived");
+                    console.log(event.data);
                     document.getElementById("news").innerHTML = event.data;
                     updateNews(event.data);
                 };
