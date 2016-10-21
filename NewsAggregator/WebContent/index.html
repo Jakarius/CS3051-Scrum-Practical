@@ -16,7 +16,7 @@
        
 
         <div id="titleHeader">
-            <h1>NewsSquare Aggregator</h1>
+            <h1>NewsSquare</h1>
         </div>
 
         <div id="sideBar">
@@ -199,18 +199,14 @@
             var sideBarExpanded = false;
 
             function expandSideBar() {
-                document.getElementById("sideBar").style.width = "250px";
-                // document.getElementById("newsCubeArea").style.marginLeft = "260px";
-                // document.getElementById("newsCubeArea").style.width = "88%";
-                document.getElementById("sideBarButton").style.marginLeft = "200px";
+                document.getElementById("sideBar").style.width = "300px";
+                document.getElementById("sideBarButton").style.marginLeft = "250px";
                 document.getElementById("sideBarButton").style.right = "0";
                 sideBarExpanded = true;
             }
 
             function shrinkSideBar() {
                 document.getElementById("sideBar").style.width = "40px";
-                // document.getElementById("newsCubeArea").style.marginLeft = "50px";
-                // document.getElementById("newsCubeArea").style.width = "100%";
                 document.getElementById("sideBarButton").style.marginLeft = "0";
                 sideBarExpanded = false;
             }
@@ -387,17 +383,6 @@
 
             function getCategoryDiv(category) {
                 return category + "Area";
-                // if (category === "uk") {
-                //     return "UKArea";
-                // } else if (category === "world") {
-                //     return "worldArea";
-                // } else if (category === "technology") {
-                //     return "technologyArea";
-                // } else if (category === "sport") {
-                //     return "sportArea";
-                // } else if (category === "england") {
-                //     return "englandArea";
-                // } 
             }
 
 
