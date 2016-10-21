@@ -11,85 +11,7 @@
     <body onload="openSocket()">
  
         <div id="newsCubeArea">
-            <div id="UKArea" class="categoryDiv">
-                <h1>UK</h1>
-            </div>
-
-            <div id="worldArea" class="categoryDiv">
-                <h1>WORLD</h1>
-            </div>
-
-            <div id="technologyArea" class="categoryDiv">
-                <h1>TECHNOLOGY</h1>
-            </div>
-
-            <div id="sportArea" class="categoryDiv">
-                <h1>SPORT</h1>
-            </div>
-            <!-- <div class="newsCube">
-                <div class="newsCubeContent">
-                    <a href="https://en.wikipedia.org/wiki/Jeb_Bush"><img class="newsCubeImage" src="https://img.4plebs.org/boards/pol/image/1473/80/1473805449404.jpg"/></a>
-                    <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><p class="newsCubeHeadline">JEBSURGE ALERT, Jeb Bush wins US Presidential Election in unexpected landslide</p></a>
-                    <p>uk</p>
-                </div>
-            </div>
-            <div class="newsCube">
-                <div class="newsCubeContent">
-                    <img class="newsCubeImage" src="http://newsninja2012.com/wp-content/uploads/2016/08/Screen-Shot-2016-08-04-at-12.57.43-PM.jpg"/>
-                    <p class="newsCubeHeadline">Hillary Clinton wins US Presidential Election with 49% of the vote</p>
-                    <p>sport</p>
-                </div>
-            </div>
-            <div class="newsCube">
-                <div class="newsCubeContent">
-                    <img class="newsCubeImage" src="http://images.huffingtonpost.com/2016-02-15-1455534387-1672884-nbcfiresdonaldtrumpafterhecallsmexicansrapistsanddrugrunners.jpg"/>
-                    <p class="newsCubeHeadline">Trump wins US Presidential Election in "yuge" victory, "really great victory", "tremendous"</p>
-                    <p>world</p>
-                </div>
-            </div>
-
-            <div class="newsCube">
-                <div class="newsCubeContent">
-                    <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><img class="newsCubeImage" src="http://i.cbc.ca/1.3414124.1456270228!/fileImage/httpImage/image.jpg_gen/derivatives/16x9_1180/putin.jpg"/></a>
-                    <a href="http://www.nbcnews.com/news/world/putin-insists-russia-has-no-intention-influencing-u-s-election-n667211"><p class="newsCubeHeadline">Putin listens to US allegations of election tampering and responds incredulously</p></a>
-                    <p>technology</p>
-                </div>
-            </div>
-            <div class="newsCube">
-                <div class="newsCubeContent">
-                    <img class="newsCubeImage" src="http://www.onechicmom.com/wp-content/uploads/2016/07/09_theresamay_r_w.jpg"/>
-                    <p class="newsCubeHeadline">Watch Theresa May's shock transformation into an amphibian mid press conference</p>
-                </div>
-            </div>
-            <div class="newsCube">
-                <div class="newsCubeContent">
-                    <img class="newsCubeImage" src="http://www.labottegadelbarbieri.org/wp-content/uploads/2015/07/merkel-rating-sp-downgrading-jpg-crop_display.jpg"/>
-                    <p class="newsCubeHeadline">Merkel looks concerned</p>
-                    <p>technology</p>
-                </div>
-            </div>
-
-            <div class="newsCube">
-                <div class="newsCubeContent">
-                    <img class="newsCubeImage" src="http://15130-presscdn-0-89.pagely.netdna-cdn.com/wp-content/uploads/2016/09/2701a6d0-clinton-4x3.jpg"/>
-                    <p class="newsCubeHeadline">Hillary Clinton Assassinated By Trump Supporter</p>
-                    <p>world</p>
-                </div>
-            </div>
-            <div class="newsCube">
-                <div class="newsCubeContent">
-                    <img class="newsCubeImage" src="https://i.ytimg.com/vi/e7UcQcD9INI/maxresdefault.jpg"/>
-                    <p class="newsCubeHeadline">Donald Trump Assassinated By Hillary Supporter</p>
-                    <p>uk</p>
-                </div>
-            </div>
-            <div class="newsCube">
-                <div class="newsCubeContent">
-                    <img class="newsCubeImage" src="RISE_AGAIN.jpg"/>
-                    <p class="newsCubeHeadline">Hillary and Trump Rise Again, Begin Final Battle</p>
-                    <p>sport</p>
-                </div>
-            </div> -->
+            
         </div>
        
 
@@ -117,7 +39,7 @@
                        
             var webSocket;
             var messages = document.getElementById("messages");
-
+            var categoriesCreated = false;
 
             var test = 
             [
@@ -308,22 +230,46 @@
             // });
 
             var newsStoriesCategorised = {};
-            var categories = ["uk", "world", "technology", "sport"];
+            // var categories = ["uk", "england", "scotland", "ireland", "wales", "world", "us", "americas", "middle_east", "europe", "australia", "asia", "africa", "business", "politics", "health", "education", "science", "technology", "entertainment", "travel", "sport"];
 
-            newsStoriesCategorised.uk = [];
-            newsStoriesCategorised.world = [];
-            newsStoriesCategorised.technology = [];
-            newsStoriesCategorised.sport = [];
+            // newsStoriesCategorised.uk = [];
+            // newsStoriesCategorised.england = [];
+            // newsStoriesCategorised.scotland = [];
+            // newsStoriesCategorised.ireland = [];
+            // newsStoriesCategorised.wales = [];
+            // newsStoriesCategorised.world = [];
+            // newsStoriesCategorised.us = [];
+            // newsStoriesCategorised.americas = [];
+            // newsStoriesCategorised.middle_east = [];
+            // newsStoriesCategorised.europe = [];
+            // newsStoriesCategorised.australia = [];
+            // newsStoriesCategorised.asia = [];
+            // newsStoriesCategorised.africa = [];
+            // newsStoriesCategorised.business = [];
+            // newsStoriesCategorised.politics = [];
+            // newsStoriesCategorised.health = [];
+            // newsStoriesCategorised.education = [];
+            // newsStoriesCategorised.science = [];
+            // newsStoriesCategorised.technology = [];
+            // newsStoriesCategorised.entertainment = [];
+            // newsStoriesCategorised.travel = [];
+            // newsStoriesCategorised.sport = [];
+
+            console.log(newsStoriesCategorised);
 
             function updateNews(data) {
                 for (var i = 0; i < data.length; i++) {
-                	console.log(data[i]);
+                    console.log(data[i]);
                     if (data[i].updates === undefined) {
                         continue;
                     }
                     var category = data[i].category;
                     for (var j = 0; j < data[i].updates.length; j++) {
                         if (category != "") {
+                            console.log(newsStoriesCategorised);
+                            if (newsStoriesCategorised[category] === undefined) {
+                                newsStoriesCategorised[category] = [];
+                            }
                             if (newsStoriesCategorised[category].indexOf(data[i].updates[j]) === -1) {
                                 newsStoriesCategorised[category].push(data[i].updates[j]);
                             } else {
@@ -332,29 +278,46 @@
                         }
                     }
                     // for (var j = 0; j < data[i].updates.length; j++) {
-                    // 	console.log(data[i].updates[j]);
+                    //  console.log(data[i].updates[j]);
                     //     createNewsCube(data[i].updates[j]);
                     // }
                 }
 
+                createCategoryAreas();
 
-                console.log(newsStoriesCategorised);
                 for (var key in newsStoriesCategorised) {
                     console.log(key);
                     if (!newsStoriesCategorised.hasOwnProperty(key)) continue;
                     for (var i = 0; i < newsStoriesCategorised[key].length; i++) {
-                        createNewsCube(newsStoriesCategorised[key][i]);
+                        createNewsCube(newsStoriesCategorised[key][i], key);
                     }
                 }
             }
 
+            function createCategoryAreas() {
+                if (categoriesCreated == true) {
+                    return;
+                }
+                for (var category in newsStoriesCategorised) {
+                    var div = document.createElement("div");
+                    div.setAttribute('id', getCategoryDiv(category));
+                    div.setAttribute('class', 'categoryDiv');
+                    var catH1 = document.createElement("h1");
+                    var catH1Text = document.createTextNode(category);
+                    catH1.appendChild(catH1Text);
+                    div.appendChild(catH1);
+                    document.getElementById("newsCubeArea").appendChild(div);
+                }
+                categoriesCreated = true;
+            }
+
             function createCategoryCubes(category) {
                 for (var i = 0; i < newsStoriesCategorised[category].length; i++) {
-                    createNewsCube(newsStoriesCategorised[category][i]);
+                    createNewsCube(newsStoriesCategorised[category][i], category);
                 }
             }
 
-            function createNewsCube(storyObject) {
+            function createNewsCube(storyObject, category) {
                 //Data should be ONE single news story.
 
                 console.log(storyObject);
@@ -375,11 +338,6 @@
                 var descriptionTextNode = document.createTextNode(storyObject.description);
                 newsCubeDescription.appendChild(descriptionTextNode);
 
-                // var newsCubeCategory = document.createElement("p");
-                // var categoryTextNode = document.createTextNode(storyObject.category);
-                // newsCubeCategory.appendChild(categoryTextNode);
-
-                // var categoryDiv = getCategoryDiv(storyObject.category);
 
                 var newsCubeImage = document.createElement("img");
                 newsCubeImage.setAttribute('src', storyObject.media);
@@ -390,16 +348,14 @@
                 newsCubeDescription.setAttribute('class', "newsCubeDescription");
                 newsCubeImage.setAttribute('class', "newsCubeImage");
 
-                // document.getElementById(categoryDiv).appendChild(newsCube);
-                document.getElementById("newsCubeArea").appendChild(newsCube);
+                var categoryDiv = getCategoryDiv(category);
+                document.getElementById(categoryDiv).appendChild(newsCube);
                 newsCube.appendChild(newsCubeContent);
                 newsCubeContent.appendChild(newsCubeImageLink);
                 newsCubeContent.appendChild(newsCubeHeadlineLink);
                 newsCubeImageLink.appendChild(newsCubeImage);
                 newsCubeHeadlineLink.appendChild(newsCubeHeadline);
-                // newsCubeContent.appendChild(newsCubeCategory);
                 newsCubeHeadlineLink.appendChild(newsCubeDescription);
-                // console.log(storyObject);
             }
 
             function filterNews(filter, checkBox) {
@@ -430,15 +386,18 @@
             }
 
             function getCategoryDiv(category) {
-                if (category === "uk") {
-                    return "UKArea";
-                } else if (category === "world") {
-                    return "worldArea";
-                } else if (category === "technology") {
-                    return "technologyArea";
-                } else if (category === "sport") {
-                    return "sportArea";
-                }
+                return category + "Area";
+                // if (category === "uk") {
+                //     return "UKArea";
+                // } else if (category === "world") {
+                //     return "worldArea";
+                // } else if (category === "technology") {
+                //     return "technologyArea";
+                // } else if (category === "sport") {
+                //     return "sportArea";
+                // } else if (category === "england") {
+                //     return "englandArea";
+                // } 
             }
 
 
