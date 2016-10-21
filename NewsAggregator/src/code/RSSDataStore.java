@@ -2,6 +2,7 @@ package code;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -13,10 +14,12 @@ public class RSSDataStore {
 	private Set<RSSFeed> feedDataSet;
 	private static final Logger logger = Logger.getLogger("RSSDataStore");
 	
-	public RSSDataStore(List<String> rssUrls) {
+	public RSSDataStore(Map<String, Set<String>> rssUrls) {
 		feedDataSet = new HashSet<>();
-		for (String url: rssUrls) {
-			add(new RSSFeed(url));
+		for (String category: rssUrls.keySet()) {
+			for (String url : rssUrls.get(category)) {
+				add(new RSSFeed(url, category));
+			}
 		}
 	}
 

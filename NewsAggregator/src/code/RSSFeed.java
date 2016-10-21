@@ -21,7 +21,7 @@ import org.xml.sax.SAXException;
 public class RSSFeed {
 	private final Deque<RSSFeedItem> itemDeque = new ArrayDeque<>();
 	
-	private final String url;
+	private final String url, category;
 	private String title, description;
 	private boolean initialised = false;
 
@@ -29,8 +29,9 @@ public class RSSFeed {
 	private Document prevRSSDoc;
 	private static final Logger logger = Logger.getLogger("RSSFeed");
 	
-	public RSSFeed(String url) {
+	public RSSFeed(String url, String category) {
 		this.url = url;
+		this.category = category;
 		try {
 			dBuilder = DocumentBuilderFactory
 					.newInstance()
@@ -117,7 +118,8 @@ public class RSSFeed {
 		JsonObjectBuilder objectBuilder =
 			Json.createObjectBuilder()
 			.add("title", title)
-			.add("description", description);
+			.add("description", description)
+			.add("category", category);
 		
 		JsonArrayBuilder arrayBuilder = 
 				Json.createArrayBuilder();
