@@ -20,27 +20,27 @@ public class Links {
 		ukLinks.add("http://feeds.skynews.com/feeds/rss/uk.xml");
 		ukLinks.add("http://www.independent.co.uk/news/uk/rss");
 		ukLinks.add("https://www.theguardian.com/uk/rss");
-		categoryMap.put("UK", ukLinks);
+		categoryMap.put("uk", ukLinks);
 
 		// England
 		Set<String> engLinks = new HashSet<>();
 		engLinks.add("http://feeds.bbci.co.uk/news/england/rss.xml?edition=uk");
-		categoryMap.put("England", engLinks);
+		categoryMap.put("england", engLinks);
 
 		// Scotland
 		Set<String> scotLinks = new HashSet<>();
 		scotLinks.add("http://feeds.bbci.co.uk/news/scotland/rss.xml?edition=uk");
-		categoryMap.put("Scotland", scotLinks);
+		categoryMap.put("scotland", scotLinks);
 
 		// Ireland
 		Set<String> ireLinks = new HashSet<>();
 		ireLinks.add("http://feeds.bbci.co.uk/news/northern_ireland/rss.xml?edition=uk");
-		categoryMap.put("Ireland", ireLinks);
+		categoryMap.put("ireland", ireLinks);
 
 		// Wales
 		Set<String> walLinks = new HashSet<>();
 		walLinks.add("http://feeds.bbci.co.uk/news/wales/rss.xml?edition=uk");
-		categoryMap.put("Wales", walLinks);
+		categoryMap.put("wales", walLinks);
 
 		// US
 		Set<String> usLinks = new HashSet<>();
@@ -48,41 +48,42 @@ public class Links {
 		//usLinks.add("http://rss.cnn.com/rss/edition_us.rss");
 		usLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/US.xml");
 		usLinks.add("http://www.dailymail.co.uk/ushome/index.rss");
+		categoryMap.put("us", usLinks);
 
 		// Asia
 		Set<String> asiaLinks = new HashSet<>();
 		//asiaLinks.add("http://rss.cnn.com/rss/edition_asia.rss");
 		asiaLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/AsiaPacific.xml");
-		categoryMap.put("Asia", asiaLinks);
+		categoryMap.put("asia", asiaLinks);
 
 		// Africa
 		Set<String> africaLinks = new HashSet<>();
 		africaLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Africa.xml");
 		//africaLinks.add("http://rss.cnn.com/rss/edition_africa.rss");
-		categoryMap.put("Africa", africaLinks);
+		categoryMap.put("africa", africaLinks);
 
 		// Middle East
 		Set<String> meLinks = new HashSet<>();
 		//meLinks.add("http://rss.cnn.com/rss/edition_meast.rss");
 		meLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/MiddleEast.xml");
-		categoryMap.put("Middle East", meLinks);
+		categoryMap.put("middle east", meLinks);
 
 		// Europe
 		Set<String> euLinks = new HashSet<>();
 		euLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Europe.xml");
 		//euLinks.add("http://rss.cnn.com/rss/edition_europe.rss");
-		categoryMap.put("Europe", euLinks);
+		categoryMap.put("europe", euLinks);
 
 		// Americas
 		Set<String> americaLinks = new HashSet<>();
 		//americaLinks.add("http://rss.cnn.com/rss/edition_americas.rss");
 		americaLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Americas.xml");
-		categoryMap.put("Americas", americaLinks);
+		categoryMap.put("americas", americaLinks);
 
 		// Australia
 		Set<String> ausLinks = new HashSet<>();
 		ausLinks.add("http://www.dailymail.co.uk/auhome/index.rss");
-		categoryMap.put("Australia", ausLinks);
+		categoryMap.put("australia", ausLinks);
 
 		// World
 		Set<String> worldLinks = new HashSet<>();
@@ -92,7 +93,7 @@ public class Links {
 		worldLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/World.xml");
 		worldLinks.add("http://www.independent.co.uk/news/world/rss");
 		worldLinks.add("https://www.theguardian.com/world/rss");
-		categoryMap.put("World", worldLinks);
+		categoryMap.put("world", worldLinks);
 
 		// Business
 		Set<String> businessLinks = new HashSet<>();
@@ -101,7 +102,7 @@ public class Links {
 		businessLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Business.xml");
 		businessLinks.add("http://www.independent.co.uk/news/business/rss");
 		businessLinks.add("https://www.theguardian.com/uk/business/rss");
-		categoryMap.put("Business", businessLinks);
+		categoryMap.put("business", businessLinks);
 
 
 		// Politics
@@ -112,21 +113,21 @@ public class Links {
 		polLinks.add("http://feeds.foxnews.com/foxnews/politics?format=xml");
 		polLinks.add("https://www.theguardian.com/politics/rss");
 		polLinks.add("http://www.huffingtonpost.co.uk/feeds/verticals/uk-politics/news.xml");
-		categoryMap.put("Politics", polLinks);
+		categoryMap.put("politics", polLinks);
 
 		// Health
 		Set<String> healthLinks = new HashSet<>();
 		healthLinks.add("http://feeds.bbci.co.uk/news/health/rss.xml?edition=uk");
 		healthLinks.add("http://www.dailymail.co.uk/health/index.rss");
 		healthLinks.add("http://feeds.foxnews.com/foxnews/health?format=xml");
-		categoryMap.put("Health", healthLinks);
+		categoryMap.put("health", healthLinks);
 
 		// Education
 		Set<String> eduLinks = new HashSet<>();
 		eduLinks.add("http://feeds.bbci.co.uk/news/education/rss.xml?edition=uk");
 		eduLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Education.xml");
 		eduLinks.add("http://www.independent.co.uk/news/education/rss");
-		categoryMap.put("Education", eduLinks);
+		categoryMap.put("education", eduLinks);
 
 		// Science
 		Set<String> sciLinks = new HashSet<>();
@@ -137,7 +138,7 @@ public class Links {
 		sciLinks.add("http://www.independent.co.uk/news/science/rss");
 		sciLinks.add("http://www.dailymail.co.uk/sciencetech/index.rss");
 		sciLinks.add("http://feeds.foxnews.com/foxnews/science?format=xml");
-		categoryMap.put("Science", sciLinks);
+		categoryMap.put("science", sciLinks);
 
 		// Technology
 		Set<String> techLinks = new HashSet<>();
@@ -148,7 +149,7 @@ public class Links {
 		techLinks.add("http://feeds.foxnews.com/foxnews/tech?format=xml");
 		techLinks.add("https://www.theguardian.com/uk/technology/rss");
 		techLinks.add("http://www.huffingtonpost.co.uk/feeds/verticals/uk-tech/news.xml");
-		categoryMap.put("Technology", techLinks);
+		categoryMap.put("technology", techLinks);
 
 		// Entertainment
 		Set<String> entLinks = new HashSet<>();
@@ -161,7 +162,7 @@ public class Links {
 		entLinks.add("http://www.mtv.com/news/movies/feed/");
 		entLinks.add("http://feeds.ign.com/ign/news?format=xml");
 		entLinks.add("http://www.huffingtonpost.co.uk/feeds/verticals/uk-entertainment/news.xml");
-		categoryMap.put("Entertainment", entLinks);
+		categoryMap.put("entertainment", entLinks);
 
 		// Sport
 		Set<String> sportLinks = new HashSet<>();
@@ -175,14 +176,14 @@ public class Links {
 		sportLinks.add("https://www.theguardian.com/uk/sport/rss");
 		sportLinks.add("https://www.theguardian.com/football/rss");
 		sportLinks.add("http://www.huffingtonpost.co.uk/feeds/verticals/uk-sport/news.xml");
-		categoryMap.put("Sport", sportLinks);
+		categoryMap.put("sport", sportLinks);
 
 		// Travel
 		Set<String> travLinks = new HashSet<>();
 		//travLinks.add("http://rss.cnn.com/rss/edition_travel.rss");
 		travLinks.add("http://www.dailymail.co.uk/travel/index.rss");
 		travLinks.add("https://www.theguardian.com/uk/travel/rss");
-		categoryMap.put("Travel", travLinks);
+		categoryMap.put("travel", travLinks);
 
 		return categoryMap;
 	}
