@@ -9,10 +9,6 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     </head>
     <body onload="openSocket()">
-
-        <div id="titleHeader">
-            <h1>NewsSquare Aggregator</h1>
-        </div>
  
         <div id="newsCubeArea">
             <div id="UKArea" class="categoryDiv">
@@ -96,6 +92,11 @@
             </div> -->
         </div>
        
+
+        <div id="titleHeader">
+            <h1>NewsSquare Aggregator</h1>
+        </div>
+
         <div id="sideBar">
             <h2>Menu</h2>
             <span id="sideBarButton" onclick="handleSideBarClick()">></span>
@@ -393,6 +394,8 @@
                     localStorage.setItem(filter + 'CatPref', 'false');
                     var categoryChildrenLength = categoryDiv.children.length;
                     for (var i = 1; i < categoryChildrenLength; i++) {
+                        // categoryDiv.style.opacity = '0';
+                        // setTimeout(function() { })
                         categoryDiv.removeChild(categoryDiv.children[1]);
                         console.log(categoryDiv.children.length);
                         console.log(categoryDiv.children);
