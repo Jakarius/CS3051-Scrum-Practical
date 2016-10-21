@@ -56,6 +56,10 @@ ul li {
 	height: 100%;
 }
 
+#allStoriesSideBar {
+	padding-left: 20px;
+}
+
 #sideBarButton {
 	position: absolute;
 	text-align: left;
@@ -73,7 +77,7 @@ ul li {
 	height: 100%;
 	width: 100%;
 	margin-left: 50px;
-	transition: all .5s ease-in-out;
+	/*transition: all .5s ease-in-out;*/
 }
 
 .newsCube { 

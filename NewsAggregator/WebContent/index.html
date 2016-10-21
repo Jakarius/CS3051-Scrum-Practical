@@ -103,11 +103,13 @@
             <br>
             <h2>Categories</h2>
             <ul>
+                <li id="allStoriesSideBar">All</li>
                 <li><input type="checkbox" id="ukCheck" checked="true">UK</input></li>
                 <li><input type="checkbox" id="worldCheck" checked="true">World</input></li>
                 <li><input type="checkbox" id="techCheck" checked="true">Technology</input></li>
                 <li><input type="checkbox" id="sportCheck" checked="true">Sport</input></li>
             </ul>
+
         </div>
 
         <!-- Script to utilise the WebSocket -->
@@ -241,6 +243,8 @@
                 }
             }
 
+
+
             document.getElementById("titleHeader").appendChild(inputElement);
            
             function openSocket(){
@@ -261,8 +265,7 @@
  
                 webSocket.onmessage = function(event){
                     console.log("Message arrived");
-                    console.log(event);
-                    updateNews(event.data);
+                    updateNews(JSON.parse(event.data));
                 };
  
                 webSocket.onclose = function(event){
@@ -275,8 +278,8 @@
 
             function expandSideBar() {
                 document.getElementById("sideBar").style.width = "250px";
-                document.getElementById("newsCubeArea").style.marginLeft = "260px";
-                document.getElementById("newsCubeArea").style.width = "88%";
+                // document.getElementById("newsCubeArea").style.marginLeft = "260px";
+                // document.getElementById("newsCubeArea").style.width = "88%";
                 document.getElementById("sideBarButton").style.marginLeft = "200px";
                 document.getElementById("sideBarButton").style.right = "0";
                 sideBarExpanded = true;
@@ -284,8 +287,8 @@
 
             function shrinkSideBar() {
                 document.getElementById("sideBar").style.width = "40px";
-                document.getElementById("newsCubeArea").style.marginLeft = "50px";
-                document.getElementById("newsCubeArea").style.width = "100%";
+                // document.getElementById("newsCubeArea").style.marginLeft = "50px";
+                // document.getElementById("newsCubeArea").style.width = "100%";
                 document.getElementById("sideBarButton").style.marginLeft = "0";
                 sideBarExpanded = false;
             }
@@ -298,6 +301,12 @@
                 }
             }
 
+            var allSideBar = document.getElementById("allStoriesSideBar");
+
+            // allSideBar.addEventListener('click', function() {
+            //     //sort by publication time
+            // });
+
             var newsStoriesCategorised = {};
             var categories = ["uk", "world", "technology", "sport"];
 
@@ -308,8 +317,12 @@
 
             function updateNews(data) {
                 for (var i = 0; i < data.length; i++) {
+                	console.log(data[i]);
+                    if (data[i].updates === undefined) {
+                        continue;
+                    }
+                    var category = data[i].category;
                     for (var j = 0; j < data[i].updates.length; j++) {
-                        var category = data[i].updates[j].category;
                         if (category != "") {
                             if (newsStoriesCategorised[category].indexOf(data[i].updates[j]) === -1) {
                                 newsStoriesCategorised[category].push(data[i].updates[j]);
@@ -318,8 +331,14 @@
                             }
                         }
                     }
+                    // for (var j = 0; j < data[i].updates.length; j++) {
+                    // 	console.log(data[i].updates[j]);
+                    //     createNewsCube(data[i].updates[j]);
+                    // }
                 }
-                // console.log(newsStoriesCategorised);
+
+
+                console.log(newsStoriesCategorised);
                 for (var key in newsStoriesCategorised) {
                     console.log(key);
                     if (!newsStoriesCategorised.hasOwnProperty(key)) continue;
@@ -344,6 +363,7 @@
 
                 var newsCubeImageLink = document.createElement("a");
                 newsCubeImageLink.setAttribute('href', storyObject.link);
+                newsCubeImageLink.setAttribute('target', 'target="_blank"');
 
                 var newsCubeHeadlineLink = newsCubeImageLink.cloneNode(false);
 
@@ -355,11 +375,11 @@
                 var descriptionTextNode = document.createTextNode(storyObject.description);
                 newsCubeDescription.appendChild(descriptionTextNode);
 
-                var newsCubeCategory = document.createElement("p");
-                var categoryTextNode = document.createTextNode(storyObject.category);
-                newsCubeCategory.appendChild(categoryTextNode);
+                // var newsCubeCategory = document.createElement("p");
+                // var categoryTextNode = document.createTextNode(storyObject.category);
+                // newsCubeCategory.appendChild(categoryTextNode);
 
-                var categoryDiv = getCategoryDiv(storyObject.category);
+                // var categoryDiv = getCategoryDiv(storyObject.category);
 
                 var newsCubeImage = document.createElement("img");
                 newsCubeImage.setAttribute('src', storyObject.media);
@@ -370,13 +390,14 @@
                 newsCubeDescription.setAttribute('class', "newsCubeDescription");
                 newsCubeImage.setAttribute('class', "newsCubeImage");
 
-                document.getElementById(categoryDiv).appendChild(newsCube);
+                // document.getElementById(categoryDiv).appendChild(newsCube);
+                document.getElementById("newsCubeArea").appendChild(newsCube);
                 newsCube.appendChild(newsCubeContent);
                 newsCubeContent.appendChild(newsCubeImageLink);
                 newsCubeContent.appendChild(newsCubeHeadlineLink);
                 newsCubeImageLink.appendChild(newsCubeImage);
                 newsCubeHeadlineLink.appendChild(newsCubeHeadline);
-                newsCubeContent.appendChild(newsCubeCategory);
+                // newsCubeContent.appendChild(newsCubeCategory);
                 newsCubeHeadlineLink.appendChild(newsCubeDescription);
                 // console.log(storyObject);
             }
