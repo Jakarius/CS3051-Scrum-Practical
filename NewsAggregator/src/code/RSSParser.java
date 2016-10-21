@@ -91,6 +91,8 @@ public class RSSParser {
 		expression = xPath.compile("pubDate");
 		child = (Node)expression.evaluate(node, XPathConstants.NODE);
 		String pubDate = child.getTextContent();
+		
+		System.out.println(pubDate);
 
 		return new RSSFeedItem(title, description, link, pubDate, null);
 	}
