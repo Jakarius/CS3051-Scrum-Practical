@@ -2,7 +2,9 @@ package code;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Iterator;
 
+import javax.xml.namespace.NamespaceContext;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
@@ -94,6 +96,44 @@ public class RSSParser {
 		
 		System.out.println(pubDate);
 
-		return new RSSFeedItem(title, description, link, pubDate, null);
+		String media = parseMedia(xPath, expression, child, node);
+		
+		return new RSSFeedItem(title, description, link, pubDate, media);
+	}
+	
+	public static String parseMedia(XPath xPath, XPathExpression expression, Node child, Node node) throws XPathExpressionException {
+		
+		//gets the namespace of the media tag
+		NamespaceContext context = new NamespaceContext() {
+			
+			@Override
+			public Iterator<String> getPrefixes(String namespaceURI) {
+				throw new UnsupportedOperationException();
+			}
+			
+			@Override
+			public String getPrefix(String namespaceURI) {
+				throw new UnsupportedOperationException();
+			}
+			
+			@Override
+			public String getNamespaceURI(String prefix) {
+
+				if ("media".equals(prefix)) {
+					return "http://search.yahoo.com/mrss/";
+				}
+				else {
+					throw new UnsupportedOperationException();
+				}
+			}
+		};
+		
+		xPath.setNamespaceContext(context);
+		
+		//gets the url for the first image in the article and stores it in object
+		expression = xPath.compile("thumbnail[1]/@url");
+		child = (Node)expression.evaluate(node, XPathConstants.NODE);
+		
+		return child.getTextContent();
 	}
 }
