@@ -11,6 +11,9 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -84,6 +87,23 @@ public class RSSParser {
 		child = (Node)expression.evaluate(node, XPathConstants.NODE);
 		String description = child.getTextContent();
 
+		if (description != null && description.charAt(0) == '<') {
+			Document doc = Jsoup.parse(description);
+			Elements ps = doc.getElementsByTag("p");
+			
+			description = "";
+			for (org.jsoup.nodes.Element p : ps) {
+				description += p.text() + " ";
+			}
+			
+			int max = description.length() - 1;
+			if (max > 300) max = 300;
+			description = description.substring(0, max);
+			if (description.length() >= 299) description += "...";
+		}
+		
+		description = description.replace('\t', ' ').replace('\n', ' ');
+
 		//gets the link of the article and stores it in the object
 		expression = xPath.compile("link");
 		child = (Node)expression.evaluate(node, XPathConstants.NODE);
@@ -93,8 +113,6 @@ public class RSSParser {
 		expression = xPath.compile("pubDate");
 		child = (Node)expression.evaluate(node, XPathConstants.NODE);
 		String pubDate = child.getTextContent();
-		
-		System.out.println(pubDate);
 
 		String media = parseMedia(xPath, expression, child, node);
 		

@@ -76,4 +76,8 @@ public class RSSDataStore {
 			if (objB != null) updateData.add(objB);
 		}
 	}
+	
+	public Set<RSSFeed> getFeeds() {
+		return feedDataSet;
+	}
 }

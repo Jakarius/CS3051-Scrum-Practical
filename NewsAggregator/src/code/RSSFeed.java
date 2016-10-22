@@ -135,4 +135,12 @@ public class RSSFeed {
 	public JsonObjectBuilder getObjectBuilder() {
 		return getObjectBuilder(itemDeque);
 	}
+
+	public Deque<RSSFeedItem> getItems() {
+		return itemDeque;
+	}
+
+	public String getUrl() {
+		return url;
+	}
 }
