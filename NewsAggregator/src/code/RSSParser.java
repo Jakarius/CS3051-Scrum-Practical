@@ -133,7 +133,19 @@ public class RSSParser {
 		//gets the url for the first image in the article and stores it in object
 		expression = xPath.compile("thumbnail[1]/@url");
 		child = (Node)expression.evaluate(node, XPathConstants.NODE);
-		
-		return child.getTextContent();
+		Node media1 = child;
+				
+		expression = xPath.compile("content[1]/@url");
+		child = (Node)expression.evaluate(node, XPathConstants.NODE);
+		Node media2 = child;
+				
+		if (media1 != null) {
+			return media1.getTextContent();
+		}
+		if (media2 != null) {
+			return media2.getTextContent();
+		}
+				
+		return null;
 	}
 }
