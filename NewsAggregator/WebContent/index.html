@@ -24,12 +24,8 @@
             <span id="sideBarButton" onclick="handleSideBarClick()">></span>
             <br>
             <h2>Categories</h2>
-            <ul>
-                <li id="allStoriesSideBar">All</li>
-                <li><input type="checkbox" id="ukCheck" checked="true">UK</input></li>
-                <li><input type="checkbox" id="worldCheck" checked="true">World</input></li>
-                <li><input type="checkbox" id="techCheck" checked="true">Technology</input></li>
-                <li><input type="checkbox" id="sportCheck" checked="true">Sport</input></li>
+            <ul id="sideBarList">
+                <li id="allStoriesSideBar"><input type="checkbox" onchange="activateAllCategories()" checked="true"/>All</li>
             </ul>
 
         </div>
@@ -129,21 +125,6 @@
                 updateNews(test);
             });
 
-            ukCheck.addEventListener('change', function() {
-                filterNews("uk", ukCheck);
-            });
-
-            worldCheck.addEventListener('change', function() {
-                filterNews("world", worldCheck);
-            });
-
-            techCheck.addEventListener('change', function() {
-                filterNews("technology", techCheck);
-            });
-
-            sportCheck.addEventListener('change', function() {
-                filterNews("sport", sportCheck);
-            });
 
             // document.addEventListener('DOMContentLoaded', function() {
             //     loadPreferences();
@@ -299,12 +280,33 @@
                     div.setAttribute('id', getCategoryDiv(category));
                     div.setAttribute('class', 'categoryDiv');
                     var catH1 = document.createElement("h1");
-                    var catH1Text = document.createTextNode(category);
+                    var catH1Text = document.createTextNode(category.toUpperCase());
                     catH1.appendChild(catH1Text);
                     div.appendChild(catH1);
                     document.getElementById("newsCubeArea").appendChild(div);
+
+                    var list = document.getElementById("sideBarList");
+                    var listItem = document.createElement("li");
+                    var input = document.createElement("input");
+                    var categoryFirstLetterCapital = category.charAt(0).toUpperCase() + category.slice(1);
+                    var inputText = document.createTextNode(categoryFirstLetterCapital);
+                    input.setAttribute('id', category+"Check");
+                    input.setAttribute('type', "checkbox");
+                    input.setAttribute('checked', "true");
+                    console.log(input);
+                    input.onchange = categoryCheckBoxCallback(category, input);
+
+                    listItem.appendChild(input);
+                    listItem.appendChild(inputText);
+                    list.appendChild(listItem);
                 }
                 categoriesCreated = true;
+            }
+
+            function categoryCheckBoxCallback(category, input) {
+                return function() {
+                    filterNews(category, input);
+                }
             }
 
             function createCategoryCubes(category) {
@@ -354,17 +356,27 @@
                 newsCubeHeadlineLink.appendChild(newsCubeDescription);
             }
 
-            function filterNews(filter, checkBox) {
+            function filterNews(category, checkBox) {
                 var newsCubes = document.getElementsByClassName("newsCube");
                 // for (var i = 0; i < newsCubes.length; i++) {
-                var categoryDiv = document.getElementById(getCategoryDiv(filter));
+                var categoryDiv = document.getElementById(getCategoryDiv(category));
                 if (checkBox.checked) {
-                    localStorage.setItem(filter + 'CatPref', 'true');
-                    categoryDiv.style.visibility = "visible";
+                    localStorage.setItem(category + 'CatPref', 'true');
+                    // categoryDiv.style.visibility = "visible";
+
+                    var div = document.createElement("div");
+                    div.setAttribute('id', getCategoryDiv(category));
+                    div.setAttribute('class', 'categoryDiv');
+                    var catH1 = document.createElement("h1");
+                    var catH1Text = document.createTextNode(category.toUpperCase());
+                    catH1.appendChild(catH1Text);
+                    div.appendChild(catH1);
+                    document.getElementById("newsCubeArea").appendChild(div);
+
                     // newsCubes[i].style.visibility = "visible";
-                    createCategoryCubes(filter);
+                    createCategoryCubes(category);
                 } else {
-                    localStorage.setItem(filter + 'CatPref', 'false');
+                    localStorage.setItem(category + 'CatPref', 'false');
                     var categoryChildrenLength = categoryDiv.children.length;
                     for (var i = 1; i < categoryChildrenLength; i++) {
                         // categoryDiv.style.opacity = '0';
@@ -373,12 +385,34 @@
                         console.log(categoryDiv.children.length);
                         console.log(categoryDiv.children);
                     }
-                    categoryDiv.style.visibility = "hidden";
+                    newsCubeArea.removeChild(categoryDiv);
+                    // categoryDiv.style.visibility = "hidden";
                     // newsCubes[i].style.visibility = "hidden";
                 }
-                    // if (newsCubes[i].children[0].children[2].innerHTML === filter) {
-                    // }
+                //     if (newsCubes[i].children[0].children[2].innerHTML === category) {
+                //     }
                 // }
+            }
+
+            function activateAllCategories() {
+                var event;
+                if (document.createEvent) {
+                    event = document.createEvent("HTMLEvents");
+                    event.initEvent("change", true, true);
+                } else {
+                    event = document.createEventObject();
+                    event.eventType = "change";
+                }
+
+                event.eventName = "change";
+
+                for (var category in newsStoriesCategorised) {
+                    if (document.createEvent) {
+                        document.getElementById(category+"Check").dispatchEvent(event);
+                    } else {
+                        document.getElementById(category+"Check").fireEvent("on" + event.eventType, event);
+                    }
+                }
             }
 
             function getCategoryDiv(category) {
