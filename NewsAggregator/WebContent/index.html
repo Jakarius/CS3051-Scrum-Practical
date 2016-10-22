@@ -135,7 +135,7 @@
                 for (var key in localStorage) {
                     var match = pattern.exec(key);
                     if (match != null) {
-                        console.log(document.getElementById(ukCheck));
+                        //console.log(document.getElementById(ukCheck));
                         if (localStorage[key] === "true") {
                             [match[1] + "Check"].checked = true;
                             window[match[1]+"Check"].checked = true;
@@ -232,23 +232,25 @@
             // newsStoriesCategorised.travel = [];
             // newsStoriesCategorised.sport = [];
 
-            console.log(newsStoriesCategorised);
+            //console.log(newsStoriesCategorised);
 
             function updateNews(data) {
                 for (var i = 0; i < data.length; i++) {
-                    console.log(data[i]);
+                    //console.log(data[i]);
                     if (data[i].updates === undefined) {
                         continue;
                     }
                     var category = data[i].category;
+                    console.log(data[i]);
                     for (var j = 0; j < data[i].updates.length; j++) {
                         if (category != "") {
-                            console.log(newsStoriesCategorised);
+                            //console.log(newsStoriesCategorised);
                             if (newsStoriesCategorised[category] === undefined) {
                                 newsStoriesCategorised[category] = [];
                             }
                             if (newsStoriesCategorised[category].indexOf(data[i].updates[j]) === -1) {
                                 newsStoriesCategorised[category].push(data[i].updates[j]);
+                                console.log(newsStoriesCategorised[category]);
                             } else {
                                 console.log("Leaving out dup");
                             }
@@ -263,7 +265,7 @@
                 createCategoryAreas();
 
                 for (var key in newsStoriesCategorised) {
-                    console.log(key);
+                    //console.log(key);
                     if (!newsStoriesCategorised.hasOwnProperty(key)) continue;
                     for (var i = 0; i < newsStoriesCategorised[key].length; i++) {
                         createNewsCube(newsStoriesCategorised[key][i], key);
@@ -293,7 +295,7 @@
                     input.setAttribute('id', category+"Check");
                     input.setAttribute('type', "checkbox");
                     input.setAttribute('checked', "true");
-                    console.log(input);
+                    //console.log(input);
                     input.onchange = categoryCheckBoxCallback(category, input);
 
                     listItem.appendChild(input);
@@ -318,7 +320,7 @@
             function createNewsCube(storyObject, category) {
                 //Data should be ONE single news story.
 
-                console.log(storyObject);
+                //console.log(storyObject);
                 var newsCube = document.createElement("div");
                 var newsCubeContent = document.createElement("div");
 
