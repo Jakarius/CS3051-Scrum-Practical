@@ -1,16 +1,17 @@
+// Newest news item is last
+var itemStore = [];
+var filters = [];
+var webSocket;
+
 function onLoad() {	
-	var item = {
-		link: "https://www.theguardian.com/politics/2016/oct/22/twice-voters-theresa-may-jeremy-corbyn-economy-brexit-opinium-observer-poll",
-		media: "https://i.guim.co.uk/img/media/a6ce293aeca93c55813e9d1fda677b25086d4bc7/4_184_4903_2943/master/4903.jpg?w=620&q=55&auto=format&usm=12&fit=max&s=3208c3a05f810b8e047c0c357d926aa0",
-		title: "We are testing titles here",
-		description: "If you want to run the same JavaScript on several pages in a web site, you should create an external JavaScript file, instead of writing the same script over and over again. Save the script file with a .js extension, and then refer to it using the src attribute in the <script> tag.",
-		category: "Politics"
-	}
+	setupCategoryButtons();
 	
-	addItem(item);
+	openSocket();
 }
 
 function addItem(item) {
+	itemStore.push(item);
+	
 	var table = $("<table>");
 	table.addClass("feed_item");
 	
@@ -57,9 +58,159 @@ function addItem(item) {
 	trCategory.append(tdCategory);
 	
 	var divCategory = $("<div>");
-	divCategory.attr('style', "background-color:#DC143C");
+	divCategory.attr('style', "background-color:" + categoryColors[item.category]);
 	divCategory.text(item.category);
 	tdCategory.append(divCategory);
 	
-	$(".feed").append(table);
+	if ($.inArray(item.category, filters) > -1) {
+		table.hide();
+	}
+	
+	$(".feed").prepend(table);
 }
+
+function addItems(items) {
+	// Items will be an array of objects. Each object will represent a feed.
+	// Within those objects there will be a 'updates' field which will contain
+	// a list of the items for that feed (newest first).
+	// This method turns that into a sequential list of items, whose children it
+	// then calls addItem() on.
+	
+	for (var itemIndex = 4; itemIndex >= 0; itemIndex--) {
+		
+		for (var feedIndex = 0; feedIndex < items.length; feedIndex++) {
+			var feed = items[feedIndex];
+			if (feed.updates.length > itemIndex) {
+				
+				var item = feed.updates[itemIndex];
+				item.category = feed.category;
+				
+				addItem(item);
+			}
+		}
+	}
+}
+
+function openSocket(){
+    // Ensures only one connection is open at a time
+    if(webSocket !== undefined && webSocket.readyState !== WebSocket.CLOSED){
+        console.log("WebSocket is already opened.");
+        return;
+    }
+    // Create a new instance of the websocket
+    webSocket = new WebSocket("ws://localhost:8080/NewsAggregator/test");
+     
+    /**
+     * Binds functions to the listeners for the websocket.
+     */
+    webSocket.onopen = function(event){
+        console.log("Connection open");
+    };
+
+    webSocket.onmessage = function(event){
+        console.log("Message arrived");
+        addItems(JSON.parse(event.data));
+    };
+
+    webSocket.onclose = function(event){
+        console.log("Connection closed");
+    };
+}
+
+function addFilter(category) {
+	filters.push(category);
+	
+	$(".feed").each(function () {
+		var c = $(this).children(".feed_item_category").children("div").text();
+		if (category == c) {
+			$(this).hide();
+		}
+	});
+}
+
+function removeFilter(category) {
+	// remove
+	var index = filters.indexOf(5);
+	if (index > -1) {
+		filters.splice(index, 1);
+	}
+	
+	$(".feed").each(function () {
+		var c = $(this).children(".feed_item_category").children("div").text();
+		if (category == c) {
+			$(this).show();
+		}
+	});
+}
+
+function removeAllFilters() {
+	filters = [];
+	
+	$(".feed").each(function () {
+		$(this).show();
+	});
+}
+
+function addAllFilters() {
+	filters = [];
+	for (var col in categoryColors) {
+		filters.push(col);
+	}
+	
+	$(".feed").each(function () {
+		$(this).hide();
+	});
+}
+
+function setupCategoryButtons() {
+	$(".category_filters > div").each(function () {
+		var color = categoryColors[$(this).text()];
+		if (color) {
+			$(this).attr('style', 'background-color:' + color);
+		}
+		
+		$(this).click(function() {
+			var categoryText = $(this).text();
+			if ($.inArray(categoryText, filters) > -1) {
+				console.log("Unfiltered: " + categoryText);
+				console.log(filters);
+				
+				removeFilter(categoryText);
+				$(this).attr('style', 'background-color:' + categoryColors[categoryText]);
+				
+			} else {
+				console.log("Filtered: " + categoryText);
+				
+				addFilter(categoryText);
+				$(this).removeAttr('style');
+				
+			}
+		})
+	});
+}
+
+var categoryColors = {
+		UK:              "#4682B4",
+		Politics:        "#DC143C",
+		Sport:           "#228B22",
+		Technology:      "#4B0082",
+		Entertainment:   "#FF69B4",
+		World:           "#8B4513",
+		Business:        "#9370DB",
+		Science:         "#0000CD",
+		Education:       "#4682B4",
+		Health:          "#DC143C",
+		Travel:          "#228B22",
+		England:         "#4B0082",
+		Scotland:        "#FF69B4",
+		Ireland:         "#8B4513",
+		Wales:           "#9370DB",
+		US:              "#0000CD",
+		Asia:            "#4682B4",
+		Africa:          "#DC143C",
+		"Middle East":   "#228B22",
+		Europe:          "#4B0082",
+		Americas:        "#FF69B4",
+		Australia:       "#8B4513"
+}                        
+                         
