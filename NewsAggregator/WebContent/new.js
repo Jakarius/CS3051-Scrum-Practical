@@ -235,5 +235,29 @@ var categoryColors = {
 		Europe:          "#4B0082",
 		Americas:        "#FF69B4",
 		Australia:       "#8B4513"
-}                        
-                         
+}
+
+
+
+
+var footerExpanded = false;
+
+function expandFooter() {
+	document.getElementById("footer").style.left = "0px";
+	$("#footer").find("h3").text("v Weather v");
+	footerExpanded = true;
+}
+
+function shrinkFooter() {
+	document.getElementById("footer").style.left = "calc(100% - 54px)";
+	$("#footer").find("h3").text("^ Weather ^");
+	footerExpanded = false;
+}
+
+function handleFooterClick() {
+	if (footerExpanded) {
+		shrinkFooter()
+	} else {
+		expandFooter();
+	}
+}
