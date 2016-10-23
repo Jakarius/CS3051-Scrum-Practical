@@ -120,8 +120,8 @@ function openSocket(){
 function addFilter(category) {
 	filters.push(category);
 	
-	$(".feed").each(function () {
-		var c = $(this).children(".feed_item_category").children("div").text();
+	$(".feed_item").each(function () {
+		var c = $(this).find(".feed_item_category").find("div").first().text();
 		if (category == c) {
 			$(this).hide();
 		}
@@ -130,13 +130,13 @@ function addFilter(category) {
 
 function removeFilter(category) {
 	// remove
-	var index = filters.indexOf(5);
+	var index = filters.indexOf(category);
 	if (index > -1) {
 		filters.splice(index, 1);
 	}
 	
-	$(".feed").each(function () {
-		var c = $(this).children(".feed_item_category").children("div").text();
+	$(".feed_item").each(function () {
+		var c = $(this).find(".feed_item_category").find("div").first().text();
 		if (category == c) {
 			$(this).show();
 		}
@@ -146,7 +146,7 @@ function removeFilter(category) {
 function removeAllFilters() {
 	filters = [];
 	
-	$(".feed").each(function () {
+	$(".feed_item").each(function () {
 		$(this).show();
 	});
 }
@@ -157,7 +157,7 @@ function addAllFilters() {
 		filters.push(col);
 	}
 	
-	$(".feed").each(function () {
+	$(".feed_item").each(function () {
 		$(this).hide();
 	});
 }
@@ -185,8 +185,31 @@ function setupCategoryButtons() {
 				$(this).removeAttr('style');
 				
 			}
-		})
+		});
 	});
+	
+	var toggle = false; // true = displays "Select All"
+	$(".all_category_selector > div").click(function() {
+		
+		if (toggle) { // "Select All" pressed
+			$(this).removeAttr('style');
+			$(".category_filters > div").each(function () {
+				$(this).attr('style', 'background-color:' + categoryColors[$(this).text()]);
+			});
+			$(this).text("Select None");
+			removeAllFilters();
+			
+		} else { // "Select None" pressed
+			$(this).attr('style', 'background-color: #ba1818');
+			$(".category_filters > div").each(function () {
+				$(this).removeAttr('style');
+			});
+			$(this).text("Select All");
+			addAllFilters();
+		}
+		
+		toggle = !toggle;
+	})
 }
 
 var categoryColors = {
