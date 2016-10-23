@@ -63,3 +63,23 @@ function addItem(item) {
 	
 	$(".feed").append(table);
 }
+
+var footerExpanded = false;
+
+function expandFooter() {
+	document.getElementById("footer").style.top = "700px";
+	footerExpanded = true;
+}
+
+function shrinkFooter() {
+	document.getElementById("footer").style.top = "950px";
+	footerExpanded = false;
+}
+
+function handleFooterClick() {
+	if (footerExpanded) {
+		shrinkFooter()
+	} else {
+		expandFooter();
+	}
+}

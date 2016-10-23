@@ -43,6 +43,18 @@ p {
 	transition: 0.5s ease-in-out;
 }
 
+#footer {
+	text-align: center;
+	position: fixed;
+	top: 950px;
+	bottom: 0px;
+	width: 100%;
+	background-color: #E8E3E2;
+	color: #444444;
+	padding-left: 1%;
+	transition: 0.5s ease-in-out;
+}
+
 ul {
 	list-style-type: none;
 	padding: 0;

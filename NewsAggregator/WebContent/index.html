@@ -19,6 +19,11 @@
             <h1>NewsSquare</h1>
         </div>
 
+		<div id="footer">
+            <span id="footerButton" onclick="handleFooterClick()"><h3>Weather ^</h3></span>
+            <iframe id="forecast_embed" type="text/html" frameborder="0" height="245" width="90%" src="http://forecast.io/embed/#lat=56.3398&lon=-2.7967&name=St Andrews&color=#444444&units=uk"></iframe>
+        </div>
+        
         <div id="sideBar">
             <h2>Menu</h2>
             <span id="sideBarButton" onclick="handleSideBarClick()">></span>
@@ -200,6 +205,26 @@
                 }
             }
 
+			var footerExpanded = false;
+            
+            function expandFooter() {
+            	document.getElementById("footer").style.top = "700px";
+            	footerExpanded = true;
+            }
+            
+            function shrinkFooter() {
+            	document.getElementById("footer").style.top = "950px";
+            	footerExpanded = false;
+            }
+            
+            function handleFooterClick() {
+            	if (footerExpanded) {
+            		shrinkFooter()
+            	} else {
+            		expandFooter();
+            	}
+            }
+            
             var allSideBar = document.getElementById("allStoriesSideBar");
 
             // allSideBar.addEventListener('click', function() {
