@@ -2,6 +2,7 @@
 var itemStore = [];
 var filters = [];
 var webSocket;
+var loading = true;
 
 function onLoad() {	
 	setupCategoryButtons();
@@ -57,8 +58,14 @@ function addItem(item) {
 	tdCategory.attr('colspan', '2');
 	trCategory.append(tdCategory);
 	
+	var divSource = $("<div>");
+	divSource.addClass("source_tag");
+	divSource.text(item.source);
+	tdCategory.append(divSource);
+	
 	var divCategory = $("<div>");
-	divCategory.attr('style', "background-color:" + categoryColors[item.category]);
+	divCategory.addClass("category_tag");
+	divCategory.css({"color": "white", "background-color" : categoryColors[item.category]});
 	divCategory.text(item.category);
 	tdCategory.append(divCategory);
 	
@@ -84,6 +91,7 @@ function addItems(items) {
 				
 				var item = feed.updates[itemIndex];
 				item.category = feed.category;
+				item.source = feed.source;
 				
 				addItem(item);
 			}
@@ -109,6 +117,12 @@ function openSocket(){
 
     webSocket.onmessage = function(event){
         console.log("Message arrived");
+    	if (loading) { 
+    		loading = false;
+    		$(".loading-icon").hide();
+    	} else {
+        	$("#new_article_notify").fadeIn(600).delay(4000).fadeOut(300);
+    	}
         addItems(JSON.parse(event.data));
     };
 
@@ -121,7 +135,7 @@ function addFilter(category) {
 	filters.push(category);
 	
 	$(".feed_item").each(function () {
-		var c = $(this).find(".feed_item_category").find("div").first().text();
+		var c = $(this).find(".category_tag").text();
 		if (category == c) {
 			$(this).hide();
 		}
@@ -136,7 +150,7 @@ function removeFilter(category) {
 	}
 	
 	$(".feed_item").each(function () {
-		var c = $(this).find(".feed_item_category").find("div").first().text();
+		var c = $(this).find(".category_tag").text();
 		if (category == c) {
 			$(this).show();
 		}
@@ -172,14 +186,11 @@ function setupCategoryButtons() {
 		$(this).click(function() {
 			var categoryText = $(this).text();
 			if ($.inArray(categoryText, filters) > -1) {
-				console.log("Unfiltered: " + categoryText);
-				console.log(filters);
 				
 				removeFilter(categoryText);
 				$(this).attr('style', 'background-color:' + categoryColors[categoryText]);
 				
 			} else {
-				console.log("Filtered: " + categoryText);
 				
 				addFilter(categoryText);
 				$(this).removeAttr('style');

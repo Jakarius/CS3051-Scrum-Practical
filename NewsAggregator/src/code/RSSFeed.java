@@ -119,7 +119,8 @@ public class RSSFeed {
 			Json.createObjectBuilder()
 			.add("title", title)
 			.add("description", description)
-			.add("category", category);
+			.add("category", category)
+			.add("source", title);
 		
 		JsonArrayBuilder arrayBuilder = 
 				Json.createArrayBuilder();

@@ -74,6 +74,12 @@ h1 {
 
 #centre-column {
 	vertical-align: top;
+	width: 100%;
+	text-align: center;
+}
+
+.loading-icon {
+	margin-top: 50px;
 }
 
 .side-column h2 {
@@ -151,10 +157,29 @@ h1 {
 }
 
 .feed_item .feed_item_category div {
-    color: white;
     display: inline-block;
     padding: 5px;
-    width: 120px;
+    padding-left: 15px;
+    padding-right: 25px;
     font-size: 17px;
     text-align: left;
+}
+
+.source_tag {
+	background-color: #bbb;
+}
+
+.category_tag {
+	color: white;
+}
+
+#new_article_notify {
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    font-family: sans-serif;
+    background-color: #d6fdff;
+    padding: 10px;
+    font-weight: 600;
+    display: none;
 }
