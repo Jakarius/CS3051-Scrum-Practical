@@ -45,15 +45,11 @@ function addItem(item) {
 	tdContent.append(aTitle);
 	
 	var title = $("<h3>");
-	var titleCleaned = item.title.replace(/&amp;/, "&");
-	titleCleaned = titleCleaned.replace(/&apos;/, "'");
-	title.text(titleCleaned);
+	title.text(item.title);
 	aTitle.append(title);
 	
 	var desc = $("<p>");
-	var descCleaned = item.description.replace(/&amp;/, "&");
-	descCleaned = descCleaned.replace(/&apos;/, "'");
-	desc.text(descCleaned);
+	desc.text(item.description);
 	tdContent.append(desc);
 	
 	var trCategory = $("<tr>");
@@ -71,7 +67,7 @@ function addItem(item) {
 	
 	var divCategory = $("<div>");
 	divCategory.addClass("category_tag");
-	divCategory.css({"color": "white", "background-color" : categoryColors[item.category]});
+	divCategory.css("background-color", categoryColors[item.category]);
 	divCategory.text(item.category);
 	tdCategory.append(divCategory);
 	
@@ -85,7 +81,7 @@ function addItem(item) {
 	
 	if (!filteredCategory) {
 		table.css('display', 'none');
-		table.fadeIn(500);
+		table.fadeIn(800);
 	}
 }
 

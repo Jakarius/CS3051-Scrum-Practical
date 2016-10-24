@@ -81,6 +81,9 @@ public class RSSParser {
 		expression = xPath.compile("title");
 		child = (Node)expression.evaluate(node, XPathConstants.NODE);
 		String title = child.getTextContent();
+		
+		title = title.replace("&amp;", "&")
+						.replace("&apos;", "'");
 
 		//gets the description of the article and stores it in the object
 		expression = xPath.compile("description");
@@ -102,7 +105,11 @@ public class RSSParser {
 		description = description.substring(0, max);
 		if (description.length() >= 299) description += "...";
 		
-		description = description.replace('\t', ' ').replace('\n', ' ');
+		description = description
+				.replace('\t', ' ')
+				.replace('\n', ' ')
+				.replace("&amp;", "&")
+				.replace("&apos;", "'");
 
 		//gets the link of the article and stores it in the object
 		expression = xPath.compile("link");
