@@ -69,11 +69,18 @@ function addItem(item) {
 	divCategory.text(item.category);
 	tdCategory.append(divCategory);
 	
-	if ($.inArray(item.category, filters) > -1) {
+	var filteredCategory = $.inArray(item.category, filters) > -1;
+	
+	if (filteredCategory) {
 		table.hide();
 	}
 	
 	$(".feed").prepend(table);
+	
+	if (!filteredCategory) {
+		table.css('display', 'none');
+		table.fadeIn(500);
+	}
 }
 
 function addItems(items) {
@@ -137,7 +144,7 @@ function addFilter(category) {
 	$(".feed_item").each(function () {
 		var c = $(this).find(".category_tag").text();
 		if (category == c) {
-			$(this).hide();
+			$(this).fadeOut(800);
 		}
 	});
 }
@@ -152,8 +159,8 @@ function removeFilter(category) {
 	$(".feed_item").each(function () {
 		var c = $(this).find(".category_tag").text();
 		if (category == c) {
-			$(this).show();
-		}
+			$(this).fadeIn(800);
+		}		
 	});
 }
 
@@ -161,7 +168,7 @@ function removeAllFilters() {
 	filters = [];
 	
 	$(".feed_item").each(function () {
-		$(this).show();
+		$(this).fadeIn(800);
 	});
 }
 
@@ -172,7 +179,7 @@ function addAllFilters() {
 	}
 	
 	$(".feed_item").each(function () {
-		$(this).hide();
+		$(this).fadeOut(800);
 	});
 }
 
