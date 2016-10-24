@@ -95,12 +95,12 @@ public class RSSParser {
 			for (org.jsoup.nodes.Element p : ps) {
 				description += p.text() + " ";
 			}
-			
-			int max = description.length() - 1;
-			if (max > 300) max = 300;
-			description = description.substring(0, max);
-			if (description.length() >= 299) description += "...";
 		}
+		
+		int max = description.length() - 1;
+		if (max > 300) max = 300;
+		description = description.substring(0, max);
+		if (description.length() >= 299) description += "...";
 		
 		description = description.replace('\t', ' ').replace('\n', ' ');
 
