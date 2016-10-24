@@ -10,7 +10,7 @@ function onLoad() {
 	openSocket();
 }
 
-function addItem(item) {
+function addItem(item, isNew) {
 	itemStore.push(item);
 	
 	var table = $("<table>");
@@ -60,6 +60,13 @@ function addItem(item) {
 	tdCategory.attr('colspan', '2');
 	trCategory.append(tdCategory);
 	
+	if (isNew) {
+		var divNew = $("<div>");
+		divNew.addClass("new_tag");
+		divNew.text("New!");
+		tdCategory.append(divNew);
+	}
+	
 	var divSource = $("<div>");
 	divSource.addClass("source_tag");
 	divSource.text(item.source);
@@ -85,14 +92,19 @@ function addItem(item) {
 	}
 }
 
-function addItems(items) {
+function addItems(items, isNew) {
 	// Items will be an array of objects. Each object will represent a feed.
 	// Within those objects there will be a 'updates' field which will contain
 	// a list of the items for that feed (newest first).
 	// This method turns that into a sequential list of items, whose children it
 	// then calls addItem() on.
 	
-	for (var itemIndex = 4; itemIndex >= 0; itemIndex--) {
+	// Remove previous "new" items
+	if (isNew) {
+		$(".new_tag").remove();
+	}
+	
+	for (var itemIndex = 0; itemIndex < 5; itemIndex++) {
 		
 		for (var feedIndex = 0; feedIndex < items.length; feedIndex++) {
 			var feed = items[feedIndex];
@@ -102,7 +114,7 @@ function addItems(items) {
 				item.category = feed.category;
 				item.source = feed.source;
 				
-				addItem(item);
+				addItem(item, isNew);
 			}
 		}
 	}
@@ -126,13 +138,14 @@ function openSocket(){
 
     webSocket.onmessage = function(event){
         console.log("Message arrived");
-    	if (loading) { 
-    		loading = false;
+    	if (loading) {
     		$(".loading-icon").hide();
     	} else {
         	$("#new_article_notify").fadeIn(600).delay(4000).fadeOut(300);
     	}
-        addItems(JSON.parse(event.data));
+        addItems(JSON.parse(event.data), !loading);
+        
+        loading = false;
     };
 
     webSocket.onclose = function(event){

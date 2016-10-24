@@ -161,8 +161,8 @@ h1 {
 .feed_item .feed_item_category div {
     display: inline-block;
     padding: 5px;
-    padding-left: 15px;
-    padding-right: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
     font-size: 17px;
     text-align: left;
 }
@@ -173,6 +173,12 @@ h1 {
 
 .category_tag {
 	color: white;
+}
+
+.new_tag {
+	background-color: #ba1818;
+	color: white;
+	font-family: sans-serif;
 }
 
 #new_article_notify {

@@ -84,7 +84,7 @@ public class RSSParser {
 		
 		title = title.replace("&amp;", "&")
 						.replace("&apos;", "'");
-
+		
 		//gets the description of the article and stores it in the object
 		expression = xPath.compile("description");
 		child = (Node)expression.evaluate(node, XPathConstants.NODE);
