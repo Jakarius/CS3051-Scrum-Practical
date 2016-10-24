@@ -28,6 +28,7 @@ function addItem(item) {
 	
 	var aImg = $("<a>");
 	aImg.attr('href', item.link);
+	aImg.attr('target', "_blank");
 	tdImg.append(aImg);
 	
 	var img = $("<img>");
@@ -40,14 +41,19 @@ function addItem(item) {
 	
 	var aTitle = $("<a>");
 	aTitle.attr('href', item.link);
+	aTitle.attr('target', "_blank");
 	tdContent.append(aTitle);
 	
 	var title = $("<h3>");
-	title.text(item.title);
+	var titleCleaned = item.title.replace(/&amp;/, "&");
+	titleCleaned = titleCleaned.replace(/&apos;/, "'");
+	title.text(titleCleaned);
 	aTitle.append(title);
 	
 	var desc = $("<p>");
-	desc.text(item.description);
+	var descCleaned = item.description.replace(/&amp;/, "&");
+	descCleaned = descCleaned.replace(/&apos;/, "'");
+	desc.text(descCleaned);
 	tdContent.append(desc);
 	
 	var trCategory = $("<tr>");
