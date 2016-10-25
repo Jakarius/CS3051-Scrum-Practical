@@ -14,15 +14,8 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
-/** 
- * @ServerEndpoint gives the relative name for the end point
- * This will be accessed via ws://localhost:8080/EchoChamber/echo
- * Where "localhost" is the address of the host,
- * "EchoChamber" is the name of the package
- * and "echo" is the address to access this class from the server
- */
 @ApplicationScoped
-@ServerEndpoint("/test")
+@ServerEndpoint("/ws")
 public class WebsocketServer {
 	
 	@EJB

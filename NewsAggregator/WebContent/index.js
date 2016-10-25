@@ -127,7 +127,7 @@ function openSocket(){
         return;
     }
     // Create a new instance of the websocket
-    webSocket = new WebSocket("ws://localhost:8080/NewsAggregator/test");
+    webSocket = new WebSocket("ws://hotoffthepress.nq3akqyzs2.eu-west-1.elasticbeanstalk.com:8080/HotOffThePress/ws");
      
     /**
      * Binds functions to the listeners for the websocket.

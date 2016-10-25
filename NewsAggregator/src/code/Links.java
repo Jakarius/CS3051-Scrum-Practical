@@ -17,7 +17,7 @@ public class Links {
 		// UK
 		Set<String> ukLinks = new HashSet<>();
 		ukLinks.add("http://feeds.bbci.co.uk/news/uk/rss.xml?edition=uk");
-		ukLinks.add("http://feeds.skynews.com/feeds/rss/uk.xml");
+		//ukLinks.add("http://feeds.skynews.com/feeds/rss/uk.xml");
 		ukLinks.add("http://www.independent.co.uk/news/uk/rss");
 		ukLinks.add("https://www.theguardian.com/uk/rss");
 		categoryMap.put("UK", ukLinks);
@@ -53,7 +53,7 @@ public class Links {
 		// Asia
 		Set<String> asiaLinks = new HashSet<>();
 		//asiaLinks.add("http://rss.cnn.com/rss/edition_asia.rss");
-		asiaLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/AsiaPacific.xml");
+		//asiaLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/AsiaPacific.xml");
 		categoryMap.put("Asia", asiaLinks);
 
 		// Africa
@@ -70,7 +70,7 @@ public class Links {
 
 		// Europe
 		Set<String> euLinks = new HashSet<>();
-		euLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Europe.xml");
+		//euLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Europe.xml");
 		//euLinks.add("http://rss.cnn.com/rss/edition_europe.rss");
 		categoryMap.put("Europe", euLinks);
 
@@ -112,7 +112,7 @@ public class Links {
 		polLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Politics.xml");
 		polLinks.add("http://feeds.foxnews.com/foxnews/politics?format=xml");
 		polLinks.add("https://www.theguardian.com/politics/rss");
-		polLinks.add("http://www.huffingtonpost.co.uk/feeds/verticals/uk-politics/news.xml");
+		//polLinks.add("http://www.huffingtonpost.co.uk/feeds/verticals/uk-politics/news.xml");
 		categoryMap.put("Politics", polLinks);
 
 		// Health
@@ -133,7 +133,7 @@ public class Links {
 		Set<String> sciLinks = new HashSet<>();
 		sciLinks.add("http://feeds.bbci.co.uk/news/science_and_environment/rss.xml?edition=uk");
 		//sciLinks.add("http://rss.cnn.com/rss/edition_space.rss");
-		sciLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Science.xml");
+		//sciLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Science.xml");
 		sciLinks.add("http://rss.nytimes.com/services/xml/rss/nyt/Space.xml");
 		sciLinks.add("http://www.independent.co.uk/news/science/rss");
 		sciLinks.add("http://www.dailymail.co.uk/sciencetech/index.rss");
