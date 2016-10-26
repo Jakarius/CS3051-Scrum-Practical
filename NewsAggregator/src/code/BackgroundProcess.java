@@ -13,6 +13,8 @@ import javax.ejb.Timeout;
 import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
 
+// This is a singleton session bean, meaning it will run as a single instance
+// in the background of our server. It is also specified to begin on startup.
 @Singleton
 @Startup
 public class BackgroundProcess {

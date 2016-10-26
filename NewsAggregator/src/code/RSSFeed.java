@@ -18,6 +18,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
+// All of the data held for a single RSS feed, including the methods
+// needed to get more data by polling a feed.
 public class RSSFeed {
 	private final Deque<RSSFeedItem> itemDeque = new ArrayDeque<>();
 	

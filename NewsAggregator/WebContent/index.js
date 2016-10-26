@@ -126,8 +126,9 @@ function openSocket(){
         console.log("WebSocket is already opened.");
         return;
     }
-    // Create a new instance of the websocket
-    webSocket = new WebSocket("ws://hotoffthepress.nq3akqyzs2.eu-west-1.elasticbeanstalk.com:8080/HotOffThePress/ws");
+    
+    // IF YOU WISH TO RUN THIS SERVER LOCALLY YOU WILL HAVE TO CHANGE THIS LINE
+    webSocket = new WebSocket("ws://ec2-54-229-152-220.eu-west-1.compute.amazonaws.com:8080/HotOffThePress/ws");
      
     /**
      * Binds functions to the listeners for the websocket.

@@ -10,6 +10,7 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObjectBuilder;
 
+// This class holds all of the data we store for each feed
 public class RSSDataStore {
 	private Set<RSSFeed> feedDataSet;
 	private static final Logger logger = Logger.getLogger("RSSDataStore");
